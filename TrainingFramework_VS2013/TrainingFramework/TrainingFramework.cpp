@@ -14,6 +14,7 @@
 #include "Camera.h"
 #include "SceneManager.h"
 #include "ResourceManager.h"
+#include "Game.h"
 #include "Singleton.h"
 #include <conio.h>
 #include <iostream>
@@ -23,11 +24,11 @@ using namespace std;
 GLuint vboId, iboId, textureID, matrixID;
 Shaders myShaders;
 Matran matrix;
-Texture texture;
-Objects objects;
-Camera cam;
-ResourceManager rsm;
-SceneManager scm;
+//Texture texture;
+//Objects objects;
+//Camera cam;
+//ResourceManager rsm;
+//SceneManager scm;
 
 
 
@@ -36,96 +37,23 @@ int Init ( ESContext *esContext )
 	glClearColor (1.0f, 1.0f, 1.0f, 1.0f );
 	Singleton<ResourceManager>::GetInstance()->loadResource("../Resources/Resource.txt");
 	Singleton<SceneManager>::GetInstance()->loadObjects("../Resources/Scene.txt");
-	//rsm.loadResource("../Resources/Resource.txt");
-	//scm.loadObjects("../Resources/Scene.txt", rsm);
-	//cout << scm.objectNum << endl;
-	//cout << scm.objects[4].textureNum << endl;
-	//cout << scm.objects[4].cubeTexture[0] << endl;
-	//cout << scm.objects[2].texture[0];
 	return 0;
-
 }
 
 void Draw ( ESContext *esContext )
 {
-	Singleton<SceneManager>::GetInstance()->draw();
-
-	eglSwapBuffers ( esContext->eglDisplay, esContext->eglSurface );
+	Singleton<Game>::GetInstance()->Draw();
+	eglSwapBuffers(esContext->eglDisplay, esContext->eglSurface);
 }
-
-bool MoveR, MoveL, MoveU, MoveD, MoveF, MoveB;
-bool RotateL, RotateR, RotateU, RotateD;
 
 void Update ( ESContext *esContext, float deltaTime )
 {
-	if (MoveF) {
-		cout << "forward" << endl;
-		Singleton<SceneManager>::GetInstance()->camera.movementF(deltaTime);
-		MoveF = false;
-	}
-	if (MoveB) {
-		cout << "Back" << endl;
-		Singleton<SceneManager>::GetInstance()->camera.movementB(deltaTime);
-		MoveB = false;
-	}
-	if (MoveL) {
-		cout << "Left" << endl;
-		Singleton<SceneManager>::GetInstance()->camera.movementL(deltaTime);
-		MoveL = false;
-	}
-	if (MoveR) {
-		cout << "Right" << endl;
-		Singleton<SceneManager>::GetInstance()->camera.movementR(deltaTime);
-		MoveR = false;
-	}
-	if (MoveU) {
-		cout << "Up" << endl;
-		Singleton<SceneManager>::GetInstance()->camera.movementU(deltaTime);
-		MoveU = false;
-	}
-	if (MoveD) {
-		cout << "Down" << endl;
-		Singleton<SceneManager>::GetInstance()->camera.movementD(deltaTime);
-		MoveD = false;
-	}
-	if (RotateL) {
-		cout << "RLeft" << endl;
-		Singleton<SceneManager>::GetInstance()->camera.rotationsL(deltaTime);
-		RotateL = false;
-	}
-	if (RotateR) {
-		cout << "RRight" << endl;
-		Singleton<SceneManager>::GetInstance()->camera.rotationsR(deltaTime);
-		RotateR = false;
-	}
-	if (RotateD) {
-		cout << "RDown" << endl;
-		Singleton<SceneManager>::GetInstance()->camera.rotationsD(deltaTime);
-		RotateD = false;
-	}
-	if (RotateU) {
-		cout << "RUp" << endl;
-		Singleton<SceneManager>::GetInstance()->camera.rotationsU(deltaTime);
-		RotateU = false;
-	}
-
-	//cam.rotationsR(deltaTime);
-
+	Singleton<Game>::GetInstance()->Update(deltaTime);
 }
 
 void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 {
-	if (key == 0x51 && bIsPressed && !MoveF) MoveF = true;
-	if (key == 0x45 && bIsPressed && !MoveB) MoveB = true;
-	if (key == 0x41 && bIsPressed && !RotateL) RotateL = true;
-	if (key == 0x44 && bIsPressed && !RotateR) RotateR = true;
-	if (key == 0x53 && bIsPressed && !RotateD) RotateD = true;
-	if (key == 0x57 && bIsPressed && !RotateU) RotateU = true;
-	if (key == VK_LEFT && bIsPressed && !MoveL) MoveL = true;
-	if (key == VK_RIGHT && bIsPressed && !MoveR) MoveR = true;
-	if (key == VK_UP && bIsPressed && !MoveU) MoveU = true;
-	if (key == VK_DOWN && bIsPressed && !MoveD) MoveD = true;
-
+	Singleton<Game>::GetInstance()->Key(key, bIsPressed);
 }
 
 void CleanUp()

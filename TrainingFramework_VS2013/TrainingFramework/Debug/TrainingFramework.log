@@ -1,1 +1,5 @@
-﻿
+﻿cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  Camera.cpp
+C:\Users\Admin\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Camera.h(22,65): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\Admin\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Camera.cpp(185,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  TrainingFramework.vcxproj -> C:\Users\Admin\Documents\GitHub\GameDev\TrainingFramework_VS2013\\BIN\TrainingFramework.exe

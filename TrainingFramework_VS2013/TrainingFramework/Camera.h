@@ -28,7 +28,7 @@ public:
 	Matrix camera_mWorld, camera_mView, camera_mPerspective, camera_rx, camera_ry, camera_rz, camera_VP,
 		camera_mScale, camera_mRotation, camera_mTranslation,
 		camera_mScaleView, camera_mRotationView, camera_mTranslationView, camera_rxView, camera_ryView, camera_rzView;
-
+	Matrix M;
 	void init();
 	void movementL(float deltaTime);
 	void movementR(float deltaTime);
@@ -48,6 +48,7 @@ public:
 	void set_mtranslationB();
 	void set_mTranslationViewB();
 	void set_CamVP();
+	void SetPerspective2D();
 
 	Camera();
 	~Camera();

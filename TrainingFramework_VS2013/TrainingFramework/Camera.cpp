@@ -21,7 +21,7 @@ void Camera::movementL(float deltaTime) {
 	Vector3 deltamove;
 	deltamove = -xaxis*deltaTime*speed;
 	camera_pos += deltamove;
-	//camera_target += deltamove;
+	camera_target += deltamove;
 	zaxis = (camera_pos - camera_target).Normalize();
 	xaxis = (up.Cross(zaxis)).Normalize();
 	yaxis = (zaxis.Cross(xaxis)).Normalize();
@@ -145,7 +145,9 @@ void Camera::cal_view_matrix() {
 }
 
 void Camera::cal_perspective_matrix() {
-	camera_mPerspective.SetPerspective(fov, aspect, nearPlane, farPlane);
+	//camera_mPerspective.SetPerspective(fov, aspect, nearPlane, farPlane);
+	SetPerspective2D();
+	camera_mPerspective = M;
 }
 
 void Camera::set_mRotationB() {
@@ -175,4 +177,32 @@ void Camera::set_CamVP() {
 	cal_perspective_matrix();
 	cal_world_matrix();
 	camera_VP = camera_mView * camera_mPerspective;
+}
+
+void Camera::SetPerspective2D(){
+	const float angleOfView = 90;
+	float b, t, l, r;
+	float scale = tan(angleOfView * 0.5 * PI / 180) * nearPlane;
+	r = aspect * scale, l = -r;
+	t = scale, b = -t;
+
+	M.m[0][0] = 2 * nearPlane / (r - l);
+	M.m[1][0] = 0;
+	M.m[2][0] = 0;
+	M.m[3][0] = 0;
+
+	M.m[0][1] = 0;
+	M.m[1][1] = 2 * nearPlane / (t - b);
+	M.m[2][1] = 0;
+	M.m[3][1] = 0;
+
+	M.m[0][2] = (r + l) / (r - l);
+	M.m[1][2] = (t + b) / (t - b);
+	M.m[2][2] = -(farPlane + nearPlane) / (farPlane - nearPlane);
+	M.m[3][2] = -1;
+
+	M.m[0][3] = 0;
+	M.m[1][3] = 0;
+	M.m[2][3] = -2 * farPlane * nearPlane / (farPlane - nearPlane);
+	M.m[3][3] = 0;
 }
