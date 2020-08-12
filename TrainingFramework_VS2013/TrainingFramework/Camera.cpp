@@ -181,28 +181,29 @@ void Camera::set_CamVP() {
 
 void Camera::SetPerspective2D(){
 	const float angleOfView = 90;
-	float b, t, l, r;
-	float scale = tan(angleOfView * 0.5 * PI / 180) * nearPlane;
+	float b, t, l, r, n, f;
+	/*float scale = tan(90.0 * 0.5 * PI / 180) * nearPlane;
 	r = aspect * scale, l = -r;
-	t = scale, b = -t;
+	t = scale, b = -t;*/
+	r = 1.0; l = -1.0; b = -1.0; t = 1.0; n = -5.0; f = 5.0;
 
-	M.m[0][0] = 2 * nearPlane / (r - l);
+	M.m[0][0] = 2 / (r - l); //1/r;
 	M.m[1][0] = 0;
 	M.m[2][0] = 0;
 	M.m[3][0] = 0;
 
 	M.m[0][1] = 0;
-	M.m[1][1] = 2 * nearPlane / (t - b);
+	M.m[1][1] = 2 / (t - b) /*1/t*/;
 	M.m[2][1] = 0;
 	M.m[3][1] = 0;
 
-	M.m[0][2] = (r + l) / (r - l);
-	M.m[1][2] = (t + b) / (t - b);
-	M.m[2][2] = -(farPlane + nearPlane) / (farPlane - nearPlane);
-	M.m[3][2] = -1;
+	M.m[0][3] = -(r + l) / (r - l);
+	M.m[1][3] = -(t + b) / (t - b);
+	M.m[2][3] = -(f + n) / (f - n)/*-2 / (f - n)*/;
+	M.m[3][3] = 1 /*0*/ ;
 
-	M.m[0][3] = 0;
-	M.m[1][3] = 0;
-	M.m[2][3] = -2 * farPlane * nearPlane / (farPlane - nearPlane);
-	M.m[3][3] = 0;
+	M.m[0][2] = 0;
+	M.m[1][2] = 0;
+	M.m[2][2] = -2/ (f - n)/*-(f + n) / (f - n)*/;
+	M.m[3][2] = 0;
 }

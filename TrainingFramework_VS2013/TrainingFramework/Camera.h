@@ -17,10 +17,10 @@ public:
 	Vector3 xaxis = (up.Cross(zaxis)).Normalize();
 	Vector3 yaxis = (zaxis.Cross(xaxis)).Normalize();
 
-	float nearPlane = 0.5;
-	float farPlane = 100.f;
+	float nearPlane;
+	float farPlane;
 	float aspect = 1.0*Globals::screenWidth / Globals::screenHeight;
-	float fov = 1.0f;
+	float fov;
 
 	Matrix camera_mRotationB, camera_mRotationViewB, camera_mtranslationB, camera_mTranslationViewB;
 
