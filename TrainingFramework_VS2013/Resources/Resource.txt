@@ -1,4 +1,4 @@
-#Models: 7
+#Models: 8
 ID 0
 FILE ../Resources/Models/Woman1.nfg
 ID 1
@@ -13,8 +13,10 @@ ID 5
 FILE ../Resources/Models/Teran_Command_Center.nfg
 ID 6
 FILE ../Resources/Models/Goliath.nfg
+ID 7
+FILE ../Resources/Models/sprite.nfg
 
-#2D Textures: 8
+#2D Textures: 9
 ID 0
 FILE ../Resources/Textures/Woman1.tga
 TILING CLAMP
@@ -38,6 +40,9 @@ FILE ../Resources/Textures/Dirt.tga
 TILING CLAMP
 ID 7
 FILE ../Resources/Textures/Rock.tga
+TILING CLAMP
+ID 8
+FILE ../Resources/Textures/spritesheet.tga
 TILING CLAMP
 
 #Cube Textures: 6

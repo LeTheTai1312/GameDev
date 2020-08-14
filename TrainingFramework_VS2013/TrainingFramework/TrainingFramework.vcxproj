@@ -93,6 +93,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation2D.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Matran.cpp" />
@@ -100,6 +101,7 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Sprite2D.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TrainingFramework.cpp" />
     <ClCompile Include="Shaders.cpp" />
@@ -109,6 +111,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation2D.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Globals.h" />
@@ -119,12 +122,15 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Shaders.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Sprite2D.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Resources\Models\SkyBox.nfg" />
+    <None Include="..\Resources\Models\sprite.nfg" />
     <None Include="..\Resources\Models\Terrain.nfg" />
     <None Include="..\Resources\Models\witch.nfg" />
     <None Include="..\Resources\Models\Woman1.nfg" />
@@ -152,6 +158,7 @@
     <Image Include="..\Resources\Textures\Grass.tga" />
     <Image Include="..\Resources\Textures\left.tga" />
     <Image Include="..\Resources\Textures\right.tga" />
+    <Image Include="..\Resources\Textures\spritesheet.tga" />
     <Image Include="..\Resources\Textures\Terrain_blendmap_1.tga" />
     <Image Include="..\Resources\Textures\Terrain_blendmap_2.tga" />
     <Image Include="..\Resources\Textures\top.tga" />
@@ -162,6 +169,7 @@
   <ItemGroup>
     <Text Include="..\Resources\Resource.txt" />
     <Text Include="..\Resources\Scene.txt" />
+    <Text Include="..\Resources\sprites (1).txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

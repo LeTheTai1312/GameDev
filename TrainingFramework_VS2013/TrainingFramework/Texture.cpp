@@ -33,6 +33,10 @@ void Texture::loadTexture(char *l) {
 	glGenerateMipmap(GL_TEXTURE_2D);
 }
 
+void Texture::loadTexture2D(char* l)
+{
+}
+
 void Texture::loadImageData(char* l, int i) {
 	cubePixels[i] = LoadTGA(l, &width, &height, &bpp);
 }

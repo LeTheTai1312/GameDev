@@ -185,7 +185,7 @@ void Camera::SetPerspective2D(){
 	/*float scale = tan(90.0 * 0.5 * PI / 180) * nearPlane;
 	r = aspect * scale, l = -r;
 	t = scale, b = -t;*/
-	r = 1.0; l = -1.0; b = -1.0; t = 1.0; n = -5.0; f = 5.0;
+	r = 1.5; l = -1.5; b = -1.5; t = 1.5; n = -10.0; f = 10.0;
 
 	M.m[0][0] = 2 / (r - l); //1/r;
 	M.m[1][0] = 0;

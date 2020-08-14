@@ -14,7 +14,7 @@ model::~model()
 {
 }
 
-void model::init(char* l) {
+void model::init(char* l) { 
 	int i;
 	float posx, posy, posz, normx, normy, normz, bnx, bny, bnz, tgtx, tgty, tgtz, uvx, uvy;
 	FILE *file;

@@ -57,6 +57,12 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sprite2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Globals.h">
@@ -101,6 +107,12 @@
     <ClInclude Include="Singleton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sprite2D.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation2D.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\Shaders\TriangleShaderFS.fs">
@@ -140,6 +152,12 @@
     <None Include="..\Resources\Shaders\Women2.vs">
       <Filter>Resources\Shaders</Filter>
     </None>
+    <None Include="..\Resources\Models\sprite.nfg">
+      <Filter>Resources\file</Filter>
+    </None>
+    <None Include="..\Resources\Models\SkyBox.nfg">
+      <Filter>Resources\file</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resources\Textures\back.tga">
@@ -178,12 +196,18 @@
     <Image Include="..\Resources\Textures\Woman2.tga">
       <Filter>Resources\file</Filter>
     </Image>
+    <Image Include="..\Resources\Textures\spritesheet.tga">
+      <Filter>Resources\file</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Resources\Resource.txt">
       <Filter>Resources</Filter>
     </Text>
     <Text Include="..\Resources\Scene.txt">
+      <Filter>Resources</Filter>
+    </Text>
+    <Text Include="..\Resources\sprites (1).txt">
       <Filter>Resources</Filter>
     </Text>
   </ItemGroup>

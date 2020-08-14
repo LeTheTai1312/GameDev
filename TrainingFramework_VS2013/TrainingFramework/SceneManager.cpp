@@ -63,41 +63,11 @@ void SceneManager::draw() {
 		glBindBuffer(GL_ARRAY_BUFFER, Singleton<ResourceManager>::GetInstance()->models[objects[i].models].vboId);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Singleton<ResourceManager>::GetInstance()->models[objects[i].models].iboId);
 
-		//glBindTexture(GL_TEXTURE_2D, RsMnger.TD_Textures[objects[i].texture[0]].textureID);
-		//int iTextureLoc = glGetUniformLocation(objects[i].shaders.program, "u_texture");
-		//glUniform1i(iTextureLoc, 0);
 		for (int j = 0; j < objects[i].textureNum; j++) {
 			glActiveTexture(GL_TEXTURE0 + j);
 			glBindTexture(GL_TEXTURE_2D, Singleton<ResourceManager>::GetInstance()->TD_Textures[objects[i].texture[j]].textureID);
 			glUniform1i(glGetUniformLocation(objects[i].shaders.program, "u_texture"), j);
 		}
-
-		/*if (objects[i].textureNum > 1) {
-			//for (int j = 0; j < objects[i].textureNum; j++) {
-				glUniform1i(glGetUniformLocation(objects[i].shaders.program, "u_texture0"), 0);
-				glUniform1i(glGetUniformLocation(objects[i].shaders.program, "u_texture0"), 1);
-				glUniform1i(glGetUniformLocation(objects[i].shaders.program, "u_texture2"), 2);
-				glUniform1i(glGetUniformLocation(objects[i].shaders.program, "u_texture3"), 3);
-				//glUniform1i(glGetUniformLocation(objects[i].shaders.program, "u_texture3"), 1);
-				glActiveTexture(GL_TEXTURE1);
-				glEnable(GL_TEXTURE_2D);
-				glBindTexture(GL_TEXTURE_2D, RsMnger.TD_Textures[4].textureID);
-				glActiveTexture(GL_TEXTURE2);
-				glEnable(GL_TEXTURE_2D);
-				glBindTexture(GL_TEXTURE_2D, RsMnger.TD_Textures[5].textureID);
-				glActiveTexture(GL_TEXTURE2);
-				glEnable(GL_TEXTURE_2D);
-				glBindTexture(GL_TEXTURE_2D, RsMnger.TD_Textures[5].textureID);
-				glActiveTexture(GL_TEXTURE3);
-				glEnable(GL_TEXTURE_2D);
-				glBindTexture(GL_TEXTURE_2D, RsMnger.TD_Textures[5].textureID);
-			//}
-		}
-		else {
-			glBindTexture(GL_TEXTURE_2D, RsMnger.TD_Textures[0].textureID);
-			int iTextureLoc = glGetUniformLocation(objects[i].shaders.program, "u_texture");
-			glUniform1i(iTextureLoc, 0);
-		}*/
 
 		glBindTexture(GL_TEXTURE_CUBE_MAP, Singleton<ResourceManager>::GetInstance()->cube_Textures[0].cubeTextureID);
 		int cTextureLoc = glGetUniformLocation(objects[i].shaders.program, "u_samplerCubeMap");
