@@ -51,11 +51,7 @@ void Animation2D::play(Texture spriteTexture)
 	model.vertices[1].pos.x = 1.0f; model.vertices[1].pos.y = -1.0f; model.vertices[1].pos.z = 0.0f;
 	model.vertices[2].pos.x = -1.0f; model.vertices[2].pos.y = -1.0f; model.vertices[2].pos.z = 0.0f;
 	model.vertices[3].pos.x = -1.0f; model.vertices[3].pos.y = 1.0f; model.vertices[3].pos.z = 0.0f;
-	
-	/*model.vertices[0].uv.x = frame[0] + frame[2]; model.vertices[0].uv.y = frame[1] + frame[3];
-	model.vertices[1].uv.x = frame[0] + frame[2]; model.vertices[1].uv.y = frame[1];
-	model.vertices[2].uv.x = frame[0]; model.vertices[2].uv.y = frame[1];
-	model.vertices[3].uv.x = frame[0]; model.vertices[3].uv.y = frame[1] + frame[3];*/
+
 
 	model.vertices[0].uv.x = frame[0] + frame[2]; model.vertices[0].uv.y = 1 - frame[1];
 	model.vertices[1].uv.x = frame[0] + frame[2]; model.vertices[1].uv.y = 1 - (frame[1] + frame[3]) ;
@@ -68,14 +64,16 @@ void Animation2D::play(Texture spriteTexture)
 	
 	glGenBuffers(1, &model.vboId);
 	glBindBuffer(GL_ARRAY_BUFFER, model.vboId);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 4, model.vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 4, model.vertices, GL_DYNAMIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	glGenBuffers(1, &model.iboId);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model.iboId);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * 6, model.indices, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * 6, model.indices, GL_DYNAMIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	anim_shader.Init("../Resources/Shaders/MulTextureVS.vs", "../Resources/Shaders/MulTextureFS.fs");
 }	

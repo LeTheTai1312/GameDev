@@ -8,4 +8,5 @@ struct Vertex
 	Vector3 binormal;
 	Vector3 tangent;
 	Vector2 uv;
+
 };

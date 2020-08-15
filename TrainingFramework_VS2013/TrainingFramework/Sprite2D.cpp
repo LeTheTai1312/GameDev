@@ -4,6 +4,7 @@
 
 Sprite2D::Sprite2D()
 {
+	//texture.loadTexture2D("../Resources/Textures/spritesheet.png");
 	texture.loadTexture("../Resources/Textures/spritesheet.tga");
 	txw = 0.0; tyw = 0.0; tzw = 0.0;
 	rxw = 0.0; ryw = 0.0; rzw = 0.0;

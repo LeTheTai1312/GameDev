@@ -11,6 +11,7 @@ class Texture
 public:
 	
 	GLint width, height, bpp;
+	int w, h, nrChanels;
 	GLuint textureID, cubeTextureID;
 	std::vector <char*> cubePixels;
 	/*{

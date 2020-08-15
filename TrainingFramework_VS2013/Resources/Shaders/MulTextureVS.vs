@@ -9,7 +9,7 @@
 //}
 
 attribute vec4 a_posL;
-attribute vec3 a_colr;
+attribute vec4 a_color;
 attribute vec4 a_position;
 attribute vec2 a_uv;
 varying vec4 v_color;
