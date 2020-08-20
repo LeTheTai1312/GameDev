@@ -19,15 +19,15 @@ void Animation2D::play()
 	frame[2] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[texture[0]].width;
 	frame[3] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[texture[0]].height;
 
-	model->vertices[0].uv.x = frame[0] + frame[2]; model->vertices[0].uv.y = 1 - frame[1];
-	model->vertices[1].uv.x = frame[0] + frame[2]; model->vertices[1].uv.y = 1 - (frame[1] + frame[3]) ;
-	model->vertices[2].uv.x = frame[0]; model->vertices[2].uv.y = 1 - (frame[1] + frame[3]);
-	model->vertices[3].uv.x = frame[0]; model->vertices[3].uv.y = 1 - frame[1];
+	model.vertices[0].uv.x = frame[0] + frame[2]; model.vertices[0].uv.y = 1 - frame[1];
+	model.vertices[1].uv.x = frame[0] + frame[2]; model.vertices[1].uv.y = 1 - (frame[1] + frame[3]) ;
+	model.vertices[2].uv.x = frame[0]; model.vertices[2].uv.y = 1 - (frame[1] + frame[3]);
+	model.vertices[3].uv.x = frame[0]; model.vertices[3].uv.y = 1 - frame[1];
 
 	
 	//glGenBuffers(1, &model->vboId);
-	glBindBuffer(GL_ARRAY_BUFFER, model->vboId);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 4, model->vertices, GL_DYNAMIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, model.vboId);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 4, model.vertices, GL_DYNAMIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	/*glGenBuffers(1, &model.iboId);
@@ -51,8 +51,8 @@ void Animation2D::draw_anim()
 	glUseProgram(shaders.program);
 	glUniformMatrix4fv(shaders.WVP, 1, GL_FALSE, &wvpMatrix.m[0][0]);
 
-	glBindBuffer(GL_ARRAY_BUFFER, model->vboId);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model->iboId);
+	glBindBuffer(GL_ARRAY_BUFFER, model.vboId);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model.iboId);
 
 	glBindTexture(GL_TEXTURE_2D, Singleton<ResourceManager>::GetInstance()->TD_Textures[texture[0]].textureID);
 	glUniform1i(glGetUniformLocation(shaders.program, "u_texture"), 0);
@@ -81,7 +81,8 @@ void Animation2D::draw_anim()
 void Animation2D::update(float deltaTime)
 {
 	anim_cursor += deltaTime;
-	if (anim_cursor > speed) {
+	//float x = speed * deltaTime;
+	if (anim_cursor > speed * deltaTime) {
 		curent_frame_indx = (curent_frame_indx + 1) % frames_count;
 		anim_cursor = 0;
 
@@ -98,13 +99,13 @@ void Animation2D::update(float deltaTime)
 		model->vertices[2].uv.x = frame[0]; model->vertices[2].uv.y = 1 - (frame[1] + frame[3]);
 		model->vertices[3].uv.x = frame[0]; model->vertices[3].uv.y = 1 - frame[1];*/
 
-		model->vertices[0].uv.x = (model->vertices[0].uv.x + frame[2]); model->vertices[0].uv.y = 1 - frame[1];
-		model->vertices[1].uv.x = (model->vertices[1].uv.x + frame[2]); model->vertices[1].uv.y = 1 - (frame[1] + frame[3]);
-		model->vertices[2].uv.x = (model->vertices[2].uv.x + frame[2]); model->vertices[2].uv.y = 1 - (frame[1] + frame[3]);
-		model->vertices[3].uv.x = (model->vertices[3].uv.x + frame[2]); model->vertices[3].uv.y = 1 - frame[1];
+		model.vertices[0].uv.x = (model.vertices[0].uv.x + frame[2]); model.vertices[0].uv.y = 1 - frame[1];
+		model.vertices[1].uv.x = (model.vertices[1].uv.x + frame[2]); model.vertices[1].uv.y = 1 - (frame[1] + frame[3]);
+		model.vertices[2].uv.x = (model.vertices[2].uv.x + frame[2]); model.vertices[2].uv.y = 1 - (frame[1] + frame[3]);
+		model.vertices[3].uv.x = (model.vertices[3].uv.x + frame[2]); model.vertices[3].uv.y = 1 - frame[1];
 
-		glBindBuffer(GL_ARRAY_BUFFER, model->vboId);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 4, model->vertices, GL_STATIC_DRAW);
+		glBindBuffer(GL_ARRAY_BUFFER, model.vboId);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 4, model.vertices, GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 }
@@ -112,7 +113,7 @@ void Animation2D::update(float deltaTime)
 void Animation2D::load_element(const char* fileName){
 	anim_cursor = 0;
 	curent_frame_indx = 0;
-	speed = 0.05f;
+	//speed = 0.05f;
 	float a, b, c, d;
 	FILE* file;
 
@@ -136,5 +137,5 @@ void Animation2D::load_element(const char* fileName){
 
 	fclose(file);
 
-	model = &Singleton<ResourceManager>::GetInstance()->models[models];
+	model = Singleton<ResourceManager>::GetInstance()->models[models];
 }

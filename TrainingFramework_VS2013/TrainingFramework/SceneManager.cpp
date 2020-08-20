@@ -24,6 +24,7 @@ SceneManager::~SceneManager()
 
 void SceneManager::loadObjects(char *l) {
 	int ob, objectID, modelID, textureID, cubeTextureID, shaderID, textureNum, cubeTextureNum;
+	float anim_speed;
 	int animID;
 	FILE *file;
 	file = fopen(l, "r");
@@ -89,6 +90,7 @@ void SceneManager::loadObjects(char *l) {
 		anim[animID].shaders = Singleton<ResourceManager>::GetInstance()->shader[shaderID];
 		int a = anim[animID].textureNum;
 		anim[animID].shaders.m_texture = new int[a];
+		fscanf(file, "SPEED %f\n", &anim[animID].speed);
 		fscanf(file, "POSITION %f, %f, %f\n", &anim[animID].txw, &anim[animID].tyw, &anim[animID].tzw);
 		fscanf(file, "ROTATION %f, %f, %f\n", &anim[animID].rxw, &anim[animID].ryw, &anim[animID].rzw);
 		fscanf(file, "SCALE %f, %f, %f\n", &anim[animID].sxw, &anim[animID].syw, &anim[animID].szw);
@@ -101,7 +103,7 @@ void SceneManager::loadObjects(char *l) {
 }
 
 void SceneManager::draw() {
-	//Singleton<Camera>::GetInstance()->set_CamVP();
+	Singleton<Camera>::GetInstance()->set_CamVP();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	for (int i = 0; i < objectNum; i++) {
 		objects[i].draw();

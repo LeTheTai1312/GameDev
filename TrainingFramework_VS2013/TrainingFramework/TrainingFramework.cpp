@@ -50,7 +50,10 @@ void Draw ( ESContext *esContext)
 
 void Update ( ESContext *esContext, float deltaTime)
 {
-	//Singleton<Game>::GetInstance()->Update_animation(deltaTime);
+	Singleton<Game>::GetInstance()->Update_animation(deltaTime);
+	//cout << Singleton<SceneManager>::GetInstance()->anim[0].speed<<"-"<<deltaTime << endl;
+	//cout << Singleton<SceneManager>::GetInstance()->anim[1].speed << "-" << deltaTime << endl;
+	//cout << Singleton<SceneManager>::GetInstance()->anim[2].speed << "-" << deltaTime << endl;
 	//Singleton<Game>::GetInstance()->Draw();
 	Singleton<Game>::GetInstance()->Update(deltaTime);
 }
