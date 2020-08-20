@@ -81,11 +81,10 @@ void Animation2D::draw_anim()
 void Animation2D::update(float deltaTime)
 {
 	anim_cursor += deltaTime;
-	//float x = speed * deltaTime;
-	if (anim_cursor > speed * deltaTime) {
+	if (anim_cursor > speed) {
 		curent_frame_indx = (curent_frame_indx + 1) % frames_count;
+		cout << anim_cursor << "-" << deltaTime << endl;
 		anim_cursor = 0;
-
 		//vector<float> frame = frames[curent_frame_indx];
 		vector<float> frame = frames[0];
 		//nomalization
