@@ -6,6 +6,23 @@
 #define PI 3.141592653589
 using namespace std;
 
+model::model(const model& m)
+{
+	this->binormal = m.binormal;
+	this->iboId = m.iboId;
+	this->indices = m.indices;
+	this->n = m.n;
+	this->normal = m.normal;
+	this->nr = m.nr;
+	this->num_indice = m.num_indice;
+	this->num_vertice = m.num_vertice;
+	this->pos = m.pos;
+	this->tangent = m.tangent;
+	this->uv = m.uv;
+	this->vboId = m.vboId;
+	this->vertices = m.vertices;
+}
+
 model::model()
 {
 }

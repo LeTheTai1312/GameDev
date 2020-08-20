@@ -18,7 +18,7 @@ FILE ../Resources/Models/animation.nfg
 
 #2D Textures: 2
 ID 0
-FILE ../Resources/Textures/run.tga
+FILE ../Resources/Textures/f.tga
 TILING CLAMP
 ID 1
 FILE ../Resources/Textures/Woman1.tga

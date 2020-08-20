@@ -54,7 +54,6 @@ void Update ( ESContext *esContext, float deltaTime)
 	//cout << Singleton<SceneManager>::GetInstance()->anim[0].speed<<"-"<<deltaTime << endl;
 	//cout << Singleton<SceneManager>::GetInstance()->anim[1].speed << "-" << deltaTime << endl;
 	//cout << Singleton<SceneManager>::GetInstance()->anim[2].speed << "-" << deltaTime << endl;
-	//Singleton<Game>::GetInstance()->Draw();
 	Singleton<Game>::GetInstance()->Update(deltaTime);
 }
 

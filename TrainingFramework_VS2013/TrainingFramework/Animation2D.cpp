@@ -12,22 +12,22 @@ Animation2D::~Animation2D()
 
 void Animation2D::play()
 {
-	vector<float> frame = frames[0];
+	vector<float> frame = frames[1];
 	//nomalization
 	frame[0] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[texture[0]].width;
 	frame[1] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[texture[0]].height;
 	frame[2] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[texture[0]].width;
 	frame[3] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[texture[0]].height;
 
-	model.vertices[0].uv.x = frame[0] + frame[2]; model.vertices[0].uv.y = 1 - frame[1];
-	model.vertices[1].uv.x = frame[0] + frame[2]; model.vertices[1].uv.y = 1 - (frame[1] + frame[3]) ;
-	model.vertices[2].uv.x = frame[0]; model.vertices[2].uv.y = 1 - (frame[1] + frame[3]);
-	model.vertices[3].uv.x = frame[0]; model.vertices[3].uv.y = 1 - frame[1];
+	modela.vertices[0].uv.x = frame[0] + frame[2]; modela.vertices[0].uv.y = 1 - frame[1];
+	modela.vertices[1].uv.x = frame[0] + frame[2]; modela.vertices[1].uv.y = 1 - (frame[1] + frame[3]) ;
+	modela.vertices[2].uv.x = frame[0]; modela.vertices[2].uv.y = 1 - (frame[1] + frame[3]);
+	modela.vertices[3].uv.x = frame[0]; modela.vertices[3].uv.y = 1 - frame[1];
 
 	
-	//glGenBuffers(1, &model->vboId);
-	glBindBuffer(GL_ARRAY_BUFFER, model.vboId);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 4, model.vertices, GL_DYNAMIC_DRAW);
+	//glGenBuffers(1, &modela->vboId);
+	glBindBuffer(GL_ARRAY_BUFFER, modela.vboId);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 4, modela.vertices, GL_DYNAMIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	/*glGenBuffers(1, &model.iboId);
@@ -51,8 +51,8 @@ void Animation2D::draw_anim()
 	glUseProgram(shaders.program);
 	glUniformMatrix4fv(shaders.WVP, 1, GL_FALSE, &wvpMatrix.m[0][0]);
 
-	glBindBuffer(GL_ARRAY_BUFFER, model.vboId);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model.iboId);
+	glBindBuffer(GL_ARRAY_BUFFER, modela.vboId);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, modela.iboId);
 
 	glBindTexture(GL_TEXTURE_2D, Singleton<ResourceManager>::GetInstance()->TD_Textures[texture[0]].textureID);
 	glUniform1i(glGetUniformLocation(shaders.program, "u_texture"), 0);
@@ -83,10 +83,10 @@ void Animation2D::update(float deltaTime)
 	anim_cursor += deltaTime;
 	if (anim_cursor > speed) {
 		curent_frame_indx = (curent_frame_indx + 1) % frames_count;
-		cout << anim_cursor << "-" << deltaTime << endl;
+		//cout << anim_cursor << "-" << deltaTime << endl;
 		anim_cursor = 0;
 		//vector<float> frame = frames[curent_frame_indx];
-		vector<float> frame = frames[0];
+		vector<float> frame = frames[1];
 		//nomalization
 		frame[0] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[texture[0]].width;
 		frame[1] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[texture[0]].height;
@@ -98,13 +98,13 @@ void Animation2D::update(float deltaTime)
 		model->vertices[2].uv.x = frame[0]; model->vertices[2].uv.y = 1 - (frame[1] + frame[3]);
 		model->vertices[3].uv.x = frame[0]; model->vertices[3].uv.y = 1 - frame[1];*/
 
-		model.vertices[0].uv.x = (model.vertices[0].uv.x + frame[2]); model.vertices[0].uv.y = 1 - frame[1];
-		model.vertices[1].uv.x = (model.vertices[1].uv.x + frame[2]); model.vertices[1].uv.y = 1 - (frame[1] + frame[3]);
-		model.vertices[2].uv.x = (model.vertices[2].uv.x + frame[2]); model.vertices[2].uv.y = 1 - (frame[1] + frame[3]);
-		model.vertices[3].uv.x = (model.vertices[3].uv.x + frame[2]); model.vertices[3].uv.y = 1 - frame[1];
+		modela.vertices[0].uv.x = (modela.vertices[0].uv.x + frame[2]); modela.vertices[0].uv.y = 1 - frame[1];
+		modela.vertices[1].uv.x = (modela.vertices[1].uv.x + frame[2]); modela.vertices[1].uv.y = 1 - (frame[1] + frame[3]);
+		modela.vertices[2].uv.x = (modela.vertices[2].uv.x + frame[2]); modela.vertices[2].uv.y = 1 - (frame[1] + frame[3]);
+		modela.vertices[3].uv.x = (modela.vertices[3].uv.x + frame[2]); modela.vertices[3].uv.y = 1 - frame[1];
 
-		glBindBuffer(GL_ARRAY_BUFFER, model.vboId);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 4, model.vertices, GL_STATIC_DRAW);
+		glBindBuffer(GL_ARRAY_BUFFER, modela.vboId);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 4, modela.vertices, GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 }
@@ -135,6 +135,6 @@ void Animation2D::load_element(const char* fileName){
 	frames_count = (int)frames.size();
 
 	fclose(file);
-
-	model = Singleton<ResourceManager>::GetInstance()->models[models];
+	modela.init("../Resources/Models/animation.nfg");
+	//model a = model(Singleton<ResourceManager>::GetInstance()->models[models]);
 }
