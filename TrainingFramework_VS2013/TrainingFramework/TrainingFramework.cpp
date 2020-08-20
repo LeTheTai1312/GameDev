@@ -37,20 +37,20 @@ int Init ( ESContext *esContext )
 	glClearColor (1.0f, 0.5f, 1.0f, 1.0f );
 	Singleton<ResourceManager>::GetInstance()->loadResource("../Resources/Resource.txt");
 	Singleton<SceneManager>::GetInstance()->loadObjects("../Resources/Scene.txt");
-	Singleton<Sprite2D>::GetInstance()->Add_animation("../Resources/sprites (1).txt");
+	//Singleton<Sprite2D>::GetInstance()->Add_animation("../Resources/sprites (1).txt");
 	return 0;
 }
 
 void Draw ( ESContext *esContext)
 {
-	Singleton<Sprite2D>::GetInstance()->Draw();
-	//Singleton<Game>::GetInstance()->Draw();
+	Singleton<Game>::GetInstance()->Draw();
+	//Singleton<Sprite2D>::GetInstance()->Draw();
 	eglSwapBuffers(esContext->eglDisplay, esContext->eglSurface);
 }
 
 void Update ( ESContext *esContext, float deltaTime)
 {
-	Singleton<Sprite2D>::GetInstance()->Update(deltaTime);
+	//Singleton<Game>::GetInstance()->Update_animation(deltaTime);
 	//Singleton<Game>::GetInstance()->Draw();
 	Singleton<Game>::GetInstance()->Update(deltaTime);
 }
@@ -69,8 +69,8 @@ void CleanUp()
 	for (int i = 0; i < Singleton<ResourceManager>::GetInstance()->modelsNum; i++) {
 		Singleton<ResourceManager>::GetInstance()->free();
 	}
-	glDeleteBuffers(1, &Singleton<Sprite2D>::GetInstance()->anim->model.vboId);
-	glDeleteBuffers(1, &Singleton<Sprite2D>::GetInstance()->anim->model.iboId);
+	//glDeleteBuffers(1, &Singleton<Sprite2D>::GetInstance()->anim->model.vboId);
+	//glDeleteBuffers(1, &Singleton<Sprite2D>::GetInstance()->anim->model.iboId);
 }
 
 int _tmain(int argc, _TCHAR* argv[])

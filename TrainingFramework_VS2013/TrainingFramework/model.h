@@ -17,6 +17,7 @@ public:
 	float pos, normal, binormal, tangent, uv;
 	int n, nr, num_vertice, num_indice;
 	void init(char* l);
+	void init2D(char* l);
 	void free();
 
 

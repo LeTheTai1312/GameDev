@@ -5,6 +5,7 @@
 
 Camera::Camera()
 {
+	set_CamVP();
 }
 
 Camera::~Camera()

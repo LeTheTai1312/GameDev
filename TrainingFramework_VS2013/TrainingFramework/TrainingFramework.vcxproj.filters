@@ -110,10 +110,10 @@
     <ClInclude Include="Sprite2D.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Animation2D.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -161,6 +161,9 @@
     <None Include="..\Resources\Models\SkyBox.nfg">
       <Filter>Resources\file</Filter>
     </None>
+    <None Include="..\Resources\Models\animation.nfg">
+      <Filter>Resources\file</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resources\Textures\back.tga">
@@ -197,9 +200,6 @@
       <Filter>Resources\file</Filter>
     </Image>
     <Image Include="..\Resources\Textures\Woman2.tga">
-      <Filter>Resources\file</Filter>
-    </Image>
-    <Image Include="..\Resources\Textures\spritesheet.tga">
       <Filter>Resources\file</Filter>
     </Image>
     <Image Include="..\Resources\Textures\spritesheet.png">

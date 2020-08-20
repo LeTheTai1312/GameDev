@@ -8,14 +8,28 @@ SceneManager::SceneManager()
 
 SceneManager::~SceneManager()
 {
+	/*for (int i = 0; i < objectNum; i++) {
+		delete[] objects[i].texture;
+		delete[] objects[i].cubeTexture;
+		delete[] objects[i].shaders.m_texture;
+	}*/
+	for (int i = 0; i < animNum; i++) {
+		delete[] anim[i].texture;
+		delete[] anim[i].cubeTexture;
+		delete[] anim[i].shaders.m_texture;
+	}
+	//delete[] objects;
+	delete[] anim;
 }
 
 void SceneManager::loadObjects(char *l) {
-	int ob, objectID, modelID, textureID, cubeTextureID, shaderID;
+	int ob, objectID, modelID, textureID, cubeTextureID, shaderID, textureNum, cubeTextureNum;
+	int animID;
 	FILE *file;
 	file = fopen(l, "r");
 	fscanf(file, "#Objects: %d\n", &objectNum);
 	objects = new Objects[objectNum];
+	//anim = new Animation2D[objectNum];
 	for(int i = 0; i < objectNum; i++){
 		fscanf(file, "ID %d\n", &objectID);
 		fscanf(file, "MODEL %d\n", &modelID);
@@ -46,52 +60,60 @@ void SceneManager::loadObjects(char *l) {
 		fscanf(file, "SCALE %f, %f, %f\n", &objects[objectID].sxw, &objects[objectID].syw, &objects[objectID].szw);
 	}
 
-	fscanf(file, "#CAMERA\nNEAR %f\nFAR %f\nFOV %f\nSPEED %f", &camera.nearPlane, &camera.farPlane, &camera.fov, &camera.speed);
+	fscanf(file, "#Animations: %d\n", &animNum);
+	anim = new Animation2D[animNum];
+	for (int i = 0; i < animNum; i++) {
+		fscanf(file, "ID %d\n", &animID);
+		fscanf(file, "MODEL %d\n", &modelID);
+		anim[animID].models = modelID;
+		anim[animID].load_element("../Resources/sprites (1).txt");
+
+		fscanf(file, "TEXTURES %d\n", &textureNum);
+		anim[animID].texture = new int[textureNum];
+		//anim[animID].textureNum = textureNum;
+		for (int j = 0; j < textureNum; j++) {
+			fscanf(file, "TEXTURE %d\n", &textureID);
+			anim[animID].texture[j] = textureID;
+		}
+		anim[animID].play();
+
+		fscanf(file, "CUBETEXTURES %d\n", &cubeTextureNum);
+		//anim[animID].cubeTexture = new int[cubeTextureNum];
+		//anim[animID].cubeTextureNum = cubeTextureNum;
+		for (int j = 0; j < cubeTextureNum; j++) {
+			fscanf(file, "CUBETEX %d\n", &cubeTextureID);
+			//anim[animID].cubeTexture[j] = cubeTextureID;
+		}
+
+		fscanf(file, "SHADER %d\n", &shaderID);
+		anim[animID].shaders = Singleton<ResourceManager>::GetInstance()->shader[shaderID];
+		int a = anim[animID].textureNum;
+		anim[animID].shaders.m_texture = new int[a];
+		fscanf(file, "POSITION %f, %f, %f\n", &anim[animID].txw, &anim[animID].tyw, &anim[animID].tzw);
+		fscanf(file, "ROTATION %f, %f, %f\n", &anim[animID].rxw, &anim[animID].ryw, &anim[animID].rzw);
+		fscanf(file, "SCALE %f, %f, %f\n", &anim[animID].sxw, &anim[animID].syw, &anim[animID].szw);
+	}
+
+	fscanf(file, "#CAMERA\nNEAR %f\nFAR %f\nFOV %f\nSPEED %f", &Singleton<Camera>::GetInstance()->nearPlane, &Singleton<Camera>::GetInstance()->farPlane,
+		&Singleton<Camera>::GetInstance()->fov, &Singleton<Camera>::GetInstance()->speed);
 	fclose(file);
 
 }
 
 void SceneManager::draw() {
-	camera.set_CamVP();
+	//Singleton<Camera>::GetInstance()->set_CamVP();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	for (int i = 0; i < objectNum; i++) {
-		
-		objects[i].set_matrix(camera.camera_VP);
-		glUseProgram(objects[i].shaders.program);
-		glUniformMatrix4fv(objects[i].shaders.WVP, 1, GL_FALSE, &objects[i].wvpMatrix.m[0][0]);
+		objects[i].draw();
+	}
+	for (int i = 0; i < animNum; i++) {
+		anim[i].draw_anim();
+	}
+}
 
-		glBindBuffer(GL_ARRAY_BUFFER, Singleton<ResourceManager>::GetInstance()->models[objects[i].models].vboId);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Singleton<ResourceManager>::GetInstance()->models[objects[i].models].iboId);
-
-		for (int j = 0; j < objects[i].textureNum; j++) {
-			glActiveTexture(GL_TEXTURE0 + j);
-			glBindTexture(GL_TEXTURE_2D, Singleton<ResourceManager>::GetInstance()->TD_Textures[objects[i].texture[j]].textureID);
-			glUniform1i(glGetUniformLocation(objects[i].shaders.program, "u_texture"), j);
-		}
-
-		glBindTexture(GL_TEXTURE_CUBE_MAP, Singleton<ResourceManager>::GetInstance()->cube_Textures[0].cubeTextureID);
-		int cTextureLoc = glGetUniformLocation(objects[i].shaders.program, "u_samplerCubeMap");
-		glUniform1i(cTextureLoc, 0);
-
-		if (objects[i].shaders.positionAttribute != -1)
-		{
-			glEnableVertexAttribArray(objects[i].shaders.positionAttribute);
-			glVertexAttribPointer(objects[i].shaders.positionAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
-		}
-		if (objects[i].shaders.uvAttribute != -1)
-		{
-			glEnableVertexAttribArray(objects[i].shaders.uvAttribute);
-			glVertexAttribPointer(objects[i].shaders.uvAttribute, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (char*)0 + sizeof(Vector3)
-				+ sizeof(Vector3) + sizeof(Vector3) + sizeof(Vector3));
-		}
-		
-		glDrawArrays(GL_TRIANGLES, 0, 36);
-		glDrawElements(GL_TRIANGLES, Singleton<ResourceManager>::GetInstance()->models[objects[i].models].num_indice, GL_UNSIGNED_INT, 0);
-		glDepthMask(GL_TRUE);
-
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-		glBindTexture(GL_TEXTURE_2D, 0);
+void SceneManager::update_animation(float deltaTime) {
+	for (int i = 0; i < animNum; i++) {
+		anim[i].update(deltaTime);
 	}
 }
 

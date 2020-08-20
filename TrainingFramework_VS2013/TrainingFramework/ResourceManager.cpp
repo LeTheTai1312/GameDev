@@ -10,6 +10,14 @@ ResourceManager::ResourceManager()
 
 ResourceManager::~ResourceManager()
 {
+	for (int i = 0; i < modelsNum; i++) {
+		glDeleteBuffers(1, &models[i].vboId);
+		glDeleteBuffers(1, &models[i].iboId);
+	}
+	delete[] models;
+	delete[] TD_Textures;
+	delete[] cube_Textures;
+	delete[] shader;
 }
 
 void ResourceManager::loadResource(char* l) {

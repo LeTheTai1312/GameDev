@@ -11,13 +11,17 @@ class Objects
 {
 public:
 
-	Matrix scaleMatrix, rotationMatrix, translationMatrix, Rx, Ry, Rz, scale_view, rotation_view, translation_view,
-		Rx_v, Ry_v, Rz_v;
+	Matrix scaleMatrix;
+	Matrix rotationMatrix;
+	Matrix translationMatrix;
+	Matrix Rx, Ry, Rz;
 	Matrix wMatrix, vMatrix, pMatrix, wvpMatrix;
 	float sw, sxw, syw, szw, rxw, ryw, rzw, txw, tyw, tzw;
 	void set_matrix(Matrix v);
 	void set_world(float s, float rx, float ry, float rz, float tx, float ty, float tz);
 	void set_wvp(Matrix v);
+	void draw();
+	//void draw2D(Matrix Vp);
 
 	void update_world(float s, float x, float y, float z, float tx, float ty, float tz);
 	int textureNum, cubeTextureNum;

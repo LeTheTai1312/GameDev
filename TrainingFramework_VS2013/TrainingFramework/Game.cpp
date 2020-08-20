@@ -23,54 +23,59 @@ Game* Game::GetInstance() {
 void Game::Update(float deltaTime) {
 	if (MoveF) {
 		cout << "forward" << endl;
-		Singleton<SceneManager>::GetInstance()->camera.movementF(deltaTime);
+		Singleton<Camera>::GetInstance()->movementF(deltaTime);
 		MoveF = false;
 	}
 	if (MoveB) {
 		cout << "Back" << endl;
-		Singleton<SceneManager>::GetInstance()->camera.movementB(deltaTime);
+		Singleton<Camera>::GetInstance()->movementB(deltaTime);
 		MoveB = false;
 	}
 	if (MoveL) {
 		cout << "Left" << endl;
-		Singleton<SceneManager>::GetInstance()->camera.movementL(deltaTime);
+		Singleton<Camera>::GetInstance()->movementL(deltaTime);
 		MoveL = false;
 	}
 	if (MoveR) {
 		cout << "Right" << endl;
-		Singleton<SceneManager>::GetInstance()->camera.movementR(deltaTime);
+		Singleton<Camera>::GetInstance()->movementR(deltaTime);
 		MoveR = false;
 	}
 	if (MoveU) {
 		cout << "Up" << endl;
-		Singleton<SceneManager>::GetInstance()->camera.movementU(deltaTime);
+		Singleton<Camera>::GetInstance()->movementU(deltaTime);
 		MoveU = false;
 	}
 	if (MoveD) {
 		cout << "Down" << endl;
-		Singleton<SceneManager>::GetInstance()->camera.movementD(deltaTime);
+		Singleton<Camera>::GetInstance()->movementD(deltaTime);
 		MoveD = false;
 	}
 	if (RotateL) {
 		cout << "RLeft" << endl;
-		Singleton<SceneManager>::GetInstance()->camera.rotationsL(deltaTime);
+		Singleton<Camera>::GetInstance()->rotationsL(deltaTime);
 		RotateL = false;
 	}
 	if (RotateR) {
 		cout << "RRight" << endl;
-		Singleton<SceneManager>::GetInstance()->camera.rotationsR(deltaTime);
+		Singleton<Camera>::GetInstance()->rotationsR(deltaTime);
 		RotateR = false;
 	}
 	if (RotateD) {
 		cout << "RDown" << endl;
-		Singleton<SceneManager>::GetInstance()->camera.rotationsD(deltaTime);
+		Singleton<Camera>::GetInstance()->rotationsD(deltaTime);
 		RotateD = false;
 	}
 	if (RotateU) {
 		cout << "RUp" << endl;
-		Singleton<SceneManager>::GetInstance()->camera.rotationsU(deltaTime);
+		Singleton<Camera>::GetInstance()->rotationsU(deltaTime);
 		RotateU = false;
 	}
+}
+
+void Game::Update_animation(float deltaTime)
+{
+	Singleton<SceneManager>::GetInstance()->update_animation(deltaTime);
 }
 
 void Game::Key( unsigned char key, bool bIsPressed){
@@ -90,3 +95,4 @@ void Game::Draw(){
 
 	Singleton<SceneManager>::GetInstance()->draw();
 }
+
