@@ -50,6 +50,7 @@ void Draw ( ESContext *esContext)
 
 void Update ( ESContext *esContext, float deltaTime)
 {
+	
 	Singleton<Game>::GetInstance()->Update_animation(deltaTime);
 	//cout << Singleton<SceneManager>::GetInstance()->anim[0].speed<<"-"<<deltaTime << endl;
 	//cout << Singleton<SceneManager>::GetInstance()->anim[1].speed << "-" << deltaTime << endl;
@@ -61,7 +62,23 @@ void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 {
 	Singleton<Game>::GetInstance()->Key(key, bIsPressed);
 }
+void TouchActionDown(ESContext* esContext, int x, int y)
+{
+	cout << x << endl;
+	// Mouse down
+}
 
+void TouchActionUp(ESContext* esContext, int x, int y)
+{
+	cout << x << endl;
+	// Mouse up
+}
+
+void TouchActionMove(ESContext* esContext, int x, int y)
+{
+	cout << x << endl;
+	// Mouse move
+}
 void CleanUp()
 {	
 	for (int i = 0; i < Singleton<ResourceManager>::GetInstance()->modelsNum; i++) {
@@ -89,7 +106,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	esRegisterDrawFunc ( &esContext, Draw );
 	esRegisterUpdateFunc ( &esContext, Update );
 	esRegisterKeyFunc ( &esContext, Key);
-
+	esRegisterMouseDownFunc(&esContext, TouchActionDown);
+	esRegisterMouseUpFunc(&esContext, TouchActionUp);
+	esRegisterMouseMoveFunc(&esContext, TouchActionMove);
 	esMainLoop ( &esContext );
 
 	//releasing OpenGL resources
