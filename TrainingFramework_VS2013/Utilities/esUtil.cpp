@@ -171,6 +171,10 @@ void ESUTIL_API esRegisterKeyFunc ( ESContext *esContext,
 {
    esContext->keyFunc = keyFunc;
 }
+void ESUTIL_API esRegisterMouseDownFunc(ESContext* esContext,
+    void (ESCALLBACK *mouseDownFunc) (ESContext*, int, int)) {
+    
+}
 
 
 
