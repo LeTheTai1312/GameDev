@@ -21,10 +21,17 @@ public:
 	void draw_anim();
 	void update(float);
 	void load_element(const char* fileName);
+	void update_animation_move(int x, int y);
 	model modela;
 	double anim_cursor;
 	int curent_frame_indx;
+	int curent_texture;
 	int frames_count;
+	int x_temp;
+	int y_temp;
+	int signal;
+	float dtTm;
+	float frame_wait;
 	float speed;
 
 	vector<vector<float>> frames;
