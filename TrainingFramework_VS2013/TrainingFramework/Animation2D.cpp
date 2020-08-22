@@ -14,10 +14,10 @@ void Animation2D::play()
 {
 	vector<float> frame = frames[1];
 	//nomalization
-	frame[0] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[texture[0]].width;
-	frame[1] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[texture[0]].height;
-	frame[2] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[texture[0]].width;
-	frame[3] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[texture[0]].height;
+	frame[0] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[curent_texture].width;
+	frame[1] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[curent_texture].height;
+	frame[2] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[curent_texture].width;
+	frame[3] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[curent_texture].height;
 
 	modela.vertices[0].uv.x = frame[0] + frame[2]; modela.vertices[0].uv.y = 1 - frame[1];
 	modela.vertices[1].uv.x = frame[0] + frame[2]; modela.vertices[1].uv.y = 1 - (frame[1] + frame[3]) ;
@@ -54,7 +54,7 @@ void Animation2D::draw_anim()
 	glBindBuffer(GL_ARRAY_BUFFER, modela.vboId);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, modela.iboId);
 
-	glBindTexture(GL_TEXTURE_2D, Singleton<ResourceManager>::GetInstance()->TD_Textures[texture[0]].textureID);
+	glBindTexture(GL_TEXTURE_2D, Singleton<ResourceManager>::GetInstance()->TD_Textures[curent_texture].textureID);
 	glUniform1i(glGetUniformLocation(shaders.program, "u_texture"), 0);
 
 	if (shaders.positionAttribute != -1)
@@ -81,22 +81,36 @@ void Animation2D::draw_anim()
 void Animation2D::update(float deltaTime)
 {
 	anim_cursor += deltaTime;
+	dtTm = deltaTime;
+	frame_wait += deltaTime;
+	//cout << frame_wait<<endl;
+	/*if (signal == 2) {
+		if (frame_wait > 15 * speed) {
+			play();
+			curent_texture = texture[0];
+			frame_wait = 0;
+			signal = 0;
+
+		}
+	}
+	else if (signal == 1) {
+		if (frame_wait > 15 * speed) {
+			play();
+			curent_texture = texture[1];
+			frame_wait = 0;
+			signal = 0;
+		}
+	}*/
 	if (anim_cursor > speed) {
 		curent_frame_indx = (curent_frame_indx + 1) % frames_count;
-		//cout << anim_cursor << "-" << deltaTime << endl;
 		anim_cursor = 0;
 		//vector<float> frame = frames[curent_frame_indx];
 		vector<float> frame = frames[1];
 		//nomalization
-		frame[0] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[texture[0]].width;
-		frame[1] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[texture[0]].height;
-		frame[2] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[texture[0]].width;
-		frame[3] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[texture[0]].height;
-
-		/*model->vertices[0].uv.x = frame[0] + frame[2]; model->vertices[0].uv.y = 1 - frame[1];
-		model->vertices[1].uv.x = frame[0] + frame[2]; model->vertices[1].uv.y = 1 - (frame[1] + frame[3]);
-		model->vertices[2].uv.x = frame[0]; model->vertices[2].uv.y = 1 - (frame[1] + frame[3]);
-		model->vertices[3].uv.x = frame[0]; model->vertices[3].uv.y = 1 - frame[1];*/
+		frame[0] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[curent_texture].width;
+		frame[1] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[curent_texture].height;
+		frame[2] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[curent_texture].width;
+		frame[3] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[curent_texture].height;
 
 		modela.vertices[0].uv.x = (modela.vertices[0].uv.x + frame[2]); modela.vertices[0].uv.y = 1 - frame[1];
 		modela.vertices[1].uv.x = (modela.vertices[1].uv.x + frame[2]); modela.vertices[1].uv.y = 1 - (frame[1] + frame[3]);
@@ -112,6 +126,8 @@ void Animation2D::update(float deltaTime)
 void Animation2D::load_element(const char* fileName){
 	anim_cursor = 0;
 	curent_frame_indx = 0;
+	frame_wait = 0;
+	signal = 0;
 	//speed = 0.05f;
 	float a, b, c, d;
 	FILE* file;
@@ -137,4 +153,26 @@ void Animation2D::load_element(const char* fileName){
 	fclose(file);
 	modela.init("../Resources/Models/animation.nfg");
 	//model a = model(Singleton<ResourceManager>::GetInstance()->models[models]);
+}
+int c = 0;
+void Animation2D::update_animation_move(int x, int y)
+{
+	if (x < x_temp && c == 0) {
+		play();
+		curent_texture = texture[1];
+		signal = 1;
+		c = 1;
+		cout << c;
+	}
+	else if (x > x_temp && c == 1) {
+		play();
+		curent_texture = texture[0];
+		signal = 0;
+		c = 0;
+		cout << c;
+	}
+	float a = ((float)x / Globals::screenWidth)*3.0 - 1.5;
+	float b = -(((float)y / Globals::screenHeight) * 3.0 - 1.5);
+	txw = a; tyw = b;
+	x_temp = x; y_temp = y;
 }

@@ -71,11 +71,13 @@ void SceneManager::loadObjects(char *l) {
 
 		fscanf(file, "TEXTURES %d\n", &textureNum);
 		anim[animID].texture = new int[textureNum];
-		//anim[animID].textureNum = textureNum;
+		anim[animID].textureNum = textureNum;
 		for (int j = 0; j < textureNum; j++) {
 			fscanf(file, "TEXTURE %d\n", &textureID);
 			anim[animID].texture[j] = textureID;
+			cout << textureID;
 		}
+		anim[animID].curent_texture = anim[animID].texture[0];
 		anim[animID].play();
 
 		fscanf(file, "CUBETEXTURES %d\n", &cubeTextureNum);
@@ -105,17 +107,24 @@ void SceneManager::loadObjects(char *l) {
 void SceneManager::draw() {
 	Singleton<Camera>::GetInstance()->set_CamVP();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	for (int i = 0; i < objectNum; i++) {
-		objects[i].draw();
-	}
 	for (int i = 0; i < animNum; i++) {
 		anim[i].draw_anim();
+	}
+	for (int i = 0; i < objectNum; i++) {
+		objects[i].draw();
 	}
 }
 
 void SceneManager::update_animation(float deltaTime) {
 	for (int i = 0; i < animNum; i++) {
 		anim[i].update(deltaTime);
+	}
+}
+
+void SceneManager::mouse_animation_move(int x, int y)
+{
+	for (int i = 0; i < animNum; i++) {
+		anim[i].update_animation_move(x, y);
 	}
 }
 

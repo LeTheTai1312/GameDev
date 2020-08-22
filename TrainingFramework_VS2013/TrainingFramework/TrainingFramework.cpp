@@ -26,18 +26,12 @@ using namespace std;
 GLuint vboId, iboId, textureID, matrixID;
 Shaders myShaders;
 Matran matrix;
-//Texture texture;
-//Objects objects;
-//Camera cam;
-//ResourceManager rsm;
-//SceneManager scm;
 
 int Init ( ESContext *esContext )
 {
 	glClearColor (1.0f, 0.5f, 1.0f, 1.0f );
 	Singleton<ResourceManager>::GetInstance()->loadResource("../Resources/Resource.txt");
 	Singleton<SceneManager>::GetInstance()->loadObjects("../Resources/Scene.txt");
-	//Singleton<Sprite2D>::GetInstance()->Add_animation("../Resources/sprites (1).txt");
 	return 0;
 }
 
@@ -52,9 +46,6 @@ void Update ( ESContext *esContext, float deltaTime)
 {
 	
 	Singleton<Game>::GetInstance()->Update_animation(deltaTime);
-	//cout << Singleton<SceneManager>::GetInstance()->anim[0].speed<<"-"<<deltaTime << endl;
-	//cout << Singleton<SceneManager>::GetInstance()->anim[1].speed << "-" << deltaTime << endl;
-	//cout << Singleton<SceneManager>::GetInstance()->anim[2].speed << "-" << deltaTime << endl;
 	Singleton<Game>::GetInstance()->Update(deltaTime);
 }
 
@@ -62,23 +53,23 @@ void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 {
 	Singleton<Game>::GetInstance()->Key(key, bIsPressed);
 }
+
 void TouchActionDown(ESContext* esContext, int x, int y)
 {
-	cout << x << endl;
-	// Mouse down
+	//cout << x << "-" << y << endl;
+	//Singleton<Game>::GetInstance()->mouse_animation_move(x, y);
 }
 
 void TouchActionUp(ESContext* esContext, int x, int y)
 {
-	cout << x << endl;
-	// Mouse up
 }
 
 void TouchActionMove(ESContext* esContext, int x, int y)
 {
-	cout << x << endl;
-	// Mouse move
+	//cout << x << "-" << y << endl;
+	Singleton<Game>::GetInstance()->mouse_animation_move(x,y);
 }
+
 void CleanUp()
 {	
 	for (int i = 0; i < Singleton<ResourceManager>::GetInstance()->modelsNum; i++) {

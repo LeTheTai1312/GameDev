@@ -1,18 +1,1 @@
-﻿cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  TrainingFramework.cpp
-D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Camera.h(22,65): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  model.cpp
-  Texture.cpp
-  Sprite2D.cpp
-  Shaders.cpp
-  SceneManager.cpp
-  ResourceManager.cpp
-  Object.cpp
-  Matran.cpp
-  Game.cpp
-  Camera.cpp
-  Animation2D.cpp
-Animation2D.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
-  TrainingFramework.vcxproj -> D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\\BIN\TrainingFramework.exe
+﻿
