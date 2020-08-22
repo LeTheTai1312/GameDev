@@ -79,6 +79,7 @@ void SceneManager::loadObjects(char *l) {
 		}
 		anim[animID].curent_texture = anim[animID].texture[0];
 		anim[animID].play();
+		//anim[animID].load_element("../Resources/sprites (1).txt");
 
 		fscanf(file, "CUBETEXTURES %d\n", &cubeTextureNum);
 		//anim[animID].cubeTexture = new int[cubeTextureNum];

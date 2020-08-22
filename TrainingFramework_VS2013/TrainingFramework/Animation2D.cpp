@@ -46,7 +46,7 @@ void Animation2D::draw_anim()
 {
 	//camera.set_CamVP();
 	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+	//play();
 	set_matrix(Singleton<Camera>::GetInstance()->camera_VP);
 	glUseProgram(shaders.program);
 	glUniformMatrix4fv(shaders.WVP, 1, GL_FALSE, &wvpMatrix.m[0][0]);
@@ -147,6 +147,8 @@ void Animation2D::load_element(const char* fileName){
 		frame.push_back(result[3]);
 		frames.push_back(frame);
 	}
+	//play();
+
 
 	frames_count = (int)frames.size();
 
