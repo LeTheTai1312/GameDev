@@ -69,13 +69,14 @@ void SceneManager::loadObjects(char *l) {
 		anim[animID].models = modelID;
 		anim[animID].load_element("../Resources/sprites (1).txt");
 
+		fscanf(file, "FRAME %d\n", &anim[animID].frameNum);
+
 		fscanf(file, "TEXTURES %d\n", &textureNum);
 		anim[animID].texture = new int[textureNum];
 		anim[animID].textureNum = textureNum;
 		for (int j = 0; j < textureNum; j++) {
 			fscanf(file, "TEXTURE %d\n", &textureID);
 			anim[animID].texture[j] = textureID;
-			cout << textureID;
 		}
 		anim[animID].curent_texture = anim[animID].texture[0];
 		anim[animID].play();
@@ -125,7 +126,7 @@ void SceneManager::update_animation(float deltaTime) {
 void SceneManager::mouse_animation_move(int x, int y)
 {
 	for (int i = 0; i < animNum; i++) {
-		anim[i].update_animation_move(x, y);
+		anim[0].update_animation_move(x, y);
 	}
 }
 

@@ -30,9 +30,11 @@ public:
 	int x_temp;
 	int y_temp;
 	int signal;
+	int frameNum;
 	float dtTm;
 	float frame_wait;
 	float speed;
+
 
 	vector<vector<float>> frames;
 };

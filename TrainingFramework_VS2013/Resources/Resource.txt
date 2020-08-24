@@ -16,7 +16,7 @@ FILE ../Resources/Models/Goliath.nfg
 ID 7
 FILE ../Resources/Models/animation.nfg
 
-#2D Textures: 4
+#2D Textures: 6
 ID 0
 FILE ../Resources/Textures/f_idle_R.tga
 TILING CLAMP
@@ -28,6 +28,12 @@ FILE ../Resources/Textures/f_rotate_1.tga
 TILING CLAMP
 ID 3
 FILE ../Resources/Textures/f_rotate_2.tga
+TILING CLAMP
+ID 4
+FILE ../Resources/Textures/f2_idle_R.tga
+TILING CLAMP
+ID 5
+FILE ../Resources/Textures/f2_idle_L.tga
 TILING CLAMP
 
 #Cube Textures: 6
