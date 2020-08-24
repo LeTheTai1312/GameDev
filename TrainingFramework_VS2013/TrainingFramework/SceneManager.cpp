@@ -126,7 +126,7 @@ void SceneManager::update_animation(float deltaTime) {
 void SceneManager::mouse_animation_move(int x, int y)
 {
 	for (int i = 0; i < animNum; i++) {
-		anim[0].update_animation_move(x, y);
+		anim[0].update_animation_move_player(x, y);
 	}
 }
 
