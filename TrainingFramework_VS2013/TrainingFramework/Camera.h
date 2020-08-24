@@ -19,7 +19,7 @@ public:
 
 	float nearPlane;
 	float farPlane;
-	float aspect = (float)(1.0*Globals::screenWidth / Globals::screenHeight);
+	float aspect = 1.0*Globals::screenWidth / Globals::screenHeight;
 	float fov;
 
 	Matrix camera_mRotationB, camera_mRotationViewB, camera_mtranslationB, camera_mTranslationViewB;

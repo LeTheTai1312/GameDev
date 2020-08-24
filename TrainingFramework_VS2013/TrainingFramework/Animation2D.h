@@ -14,7 +14,7 @@ class Animation2D: public Objects
 {
 public:
 	Animation2D();
-	 ~Animation2D();
+	~Animation2D();
 
 	void play();
 	void set_animation_speed(float newSpeed);
