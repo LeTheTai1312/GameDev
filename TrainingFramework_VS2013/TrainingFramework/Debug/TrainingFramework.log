@@ -1,1 +1,67 @@
-﻿
+﻿cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  Animation2D.cpp
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(141,20): warning C4244: 'argument': conversion from 'float' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(142,20): warning C4244: 'argument': conversion from 'float' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(143,20): warning C4244: 'argument': conversion from 'float' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(144,20): warning C4244: 'argument': conversion from 'float' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(146,27): warning C4244: 'argument': conversion from '_Ty' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(147,27): warning C4244: 'argument': conversion from '_Ty' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(148,27): warning C4244: 'argument': conversion from '_Ty' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(149,27): warning C4244: 'argument': conversion from '_Ty' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(137,9): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(140,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(165,10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(166,10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(192,48): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(193,8): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(199,10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(200,10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  TrainingFramework.vcxproj -> D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\\BIN\TrainingFramework.exe

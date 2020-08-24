@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "SceneManager.h"
 #include "Singleton.h"
 
@@ -62,7 +62,7 @@ void SceneManager::loadObjects(char *l) {
 	}
 
 	fscanf(file, "#Animations: %d\n", &animNum);
-	anim = new Animation2D[animNum];
+	anim = new Animation2D[animNum];//Tạm thời để tất cả cá khởi tạo là người chơi sau phải chuyển nhé
 	for (int i = 0; i < animNum; i++) {
 		fscanf(file, "ID %d\n", &animID);
 		fscanf(file, "MODEL %d\n", &modelID);
@@ -125,7 +125,7 @@ void SceneManager::update_animation(float deltaTime) {
 void SceneManager::mouse_animation_move(int x, int y)
 {
 	for (int i = 0; i < animNum; i++) {
-		anim[i].update_animation_move(x, y);
+		anim[i].update_animation_move_player(x, y);
 	}
 }
 

@@ -26,6 +26,8 @@ using namespace std;
 GLuint vboId, iboId, textureID, matrixID;
 Shaders myShaders;
 Matran matrix;
+int a, b;
+bool Move = false;
 
 int Init ( ESContext *esContext )
 {
@@ -44,7 +46,9 @@ void Draw ( ESContext *esContext)
 
 void Update ( ESContext *esContext, float deltaTime)
 {
-	
+	if (Move) {
+		Singleton<Game>::GetInstance()->mouse_animation_move(a, b);
+	}
 	Singleton<Game>::GetInstance()->Update_animation(deltaTime);
 	Singleton<Game>::GetInstance()->Update(deltaTime);
 }
@@ -56,8 +60,9 @@ void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 
 void TouchActionDown(ESContext* esContext, int x, int y)
 {
-	//cout << x << "-" << y << endl;
-	//Singleton<Game>::GetInstance()->mouse_animation_move(x, y);
+	Move = true;
+	a = x;
+	b = y;
 }
 
 void TouchActionUp(ESContext* esContext, int x, int y)
@@ -66,8 +71,9 @@ void TouchActionUp(ESContext* esContext, int x, int y)
 
 void TouchActionMove(ESContext* esContext, int x, int y)
 {
-	//cout << x << "-" << y << endl;
-	Singleton<Game>::GetInstance()->mouse_animation_move(x,y);
+	Move = true;
+	a = x;
+	b = y;
 }
 
 void CleanUp()
