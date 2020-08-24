@@ -135,7 +135,7 @@ void Animation2D::load_element(const char* fileName){
 	FILE* file;
 
 	file = fopen(fileName, "r");
-	for (int i = 0; i < 11; i++) {
+	for (int i = 0; i < 3; i++) {
 		vector<int> result;
 		fscanf(file, "%f,%f,%f,%f\n", &a, &b, &c, &d);
 		result.push_back(a);
