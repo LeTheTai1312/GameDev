@@ -163,6 +163,7 @@
     <Image Include="..\Resources\Textures\back.tga" />
     <Image Include="..\Resources\Textures\bottom.tga" />
     <Image Include="..\Resources\Textures\front.tga" />
+    <Image Include="..\Resources\Textures\f_idle_L.png" />
     <Image Include="..\Resources\Textures\Grass.tga" />
     <Image Include="..\Resources\Textures\left.tga" />
     <Image Include="..\Resources\Textures\right.tga" />

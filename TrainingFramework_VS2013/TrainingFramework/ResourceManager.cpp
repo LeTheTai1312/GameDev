@@ -35,6 +35,7 @@ void ResourceManager::loadResource(char* l) {
 		fscanf(file, "ID %d\n", &modelID);
 		fscanf(file, "FILE %s\n", modelLink);
 		models[modelID].init(modelLink);
+		cout << "ok" << i << endl;
 	}
 	fscanf(file, "#2D Textures: %d\n", &TDTextureNum);
 	TD_Textures = new Texture[TDTextureNum];
@@ -42,7 +43,7 @@ void ResourceManager::loadResource(char* l) {
 		fscanf(file, "ID %d\n", &TDTextureID);
 		fscanf(file, "FILE %s\n", TDTextureLink);
 		fscanf(file, "TILING %s\n", tiling);
-		TD_Textures[TDTextureID].loadTexture(TDTextureLink);
+		TD_Textures[TDTextureID].loadTexture2D(TDTextureLink);
 		tilingTD[TDTextureID] = tiling;
 	}
 	fscanf(file, "#Cube Textures: %d\n", &cubeTextureNum);

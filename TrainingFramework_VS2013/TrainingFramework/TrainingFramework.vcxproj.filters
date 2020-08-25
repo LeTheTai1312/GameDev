@@ -132,7 +132,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Rectangl.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -221,6 +221,9 @@
       <Filter>Resources\file</Filter>
     </Image>
     <Image Include="..\Resources\Textures\spritesheet.png">
+      <Filter>Resources\file</Filter>
+    </Image>
+    <Image Include="..\Resources\Textures\f_idle_L.png">
       <Filter>Resources\file</Filter>
     </Image>
   </ItemGroup>

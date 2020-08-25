@@ -70,6 +70,7 @@ void SceneManager::loadObjects(char *l) {
 		anim[animID].load_element("../Resources/sprites (1).txt");
 
 		fscanf(file, "FRAME %d\n", &anim[animID].frameNum);
+		anim[animID].frame = Singleton<ResourceManager>::GetInstance()->frames[anim[animID].frameNum];
 
 		fscanf(file, "TEXTURES %d\n", &textureNum);
 		anim[animID].texture = new int[textureNum];
@@ -108,7 +109,6 @@ void SceneManager::loadObjects(char *l) {
 
 void SceneManager::draw() {
 	Singleton<Camera>::GetInstance()->set_CamVP();
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	for (int i = 0; i < animNum; i++) {
 		anim[i].draw_anim();
 	}

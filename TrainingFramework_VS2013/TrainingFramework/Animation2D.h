@@ -24,6 +24,7 @@ public:
 	void load_element(const char* fileName);
 	void update_animation_move_player(int x, int y);
 	void update_animation_move_boss();
+	vector<float> frame; // vector kich thuoc hinh chu nhat
 	Rectangl rect;
 	Circle cir;
 	model modela;
@@ -38,7 +39,6 @@ public:
 	float dtTm;
 	float frame_wait;
 	float speed;
-
 
 	vector<vector<float>> frames;
 };
