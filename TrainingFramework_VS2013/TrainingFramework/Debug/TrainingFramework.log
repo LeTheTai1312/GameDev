@@ -1,1 +1,112 @@
-﻿
+﻿cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  TrainingFramework.cpp
+  Sprite2D.cpp
+  SceneManager.cpp
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(30,9): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(31,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(35,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(36,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(39,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(43,4): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(47,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(51,4): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(55,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(59,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(60,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(61,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(64,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(67,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(68,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(72,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(74,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(78,4): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(85,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(89,4): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(93,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(97,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(98,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(99,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(100,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(103,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(27,8): warning C4101: 'anim_speed': unreferenced local variable
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\SceneManager.cpp(26,6): warning C4101: 'ob': unreferenced local variable
+  Rectangl.cpp
+  Object.cpp
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Object.cpp(31,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Object.cpp(32,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Object.cpp(33,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Object.cpp(91,21): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Object.cpp(92,21): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Object.cpp(93,21): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Object.cpp(94,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Object.cpp(95,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Object.cpp(96,22): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  Game.cpp
+  Animation2D.cpp
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(141,20): warning C4244: 'argument': conversion from 'float' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(142,20): warning C4244: 'argument': conversion from 'float' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(143,20): warning C4244: 'argument': conversion from 'float' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(144,20): warning C4244: 'argument': conversion from 'float' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(146,27): warning C4244: 'argument': conversion from '_Ty' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(147,27): warning C4244: 'argument': conversion from '_Ty' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(148,27): warning C4244: 'argument': conversion from '_Ty' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(149,27): warning C4244: 'argument': conversion from '_Ty' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(137,9): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(140,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(165,10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(166,10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(192,48): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(193,8): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(199,10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\TrainingFramework\Animation2D.cpp(200,10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+Animation2D.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+  TrainingFramework.vcxproj -> D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\\BIN\TrainingFramework.exe
