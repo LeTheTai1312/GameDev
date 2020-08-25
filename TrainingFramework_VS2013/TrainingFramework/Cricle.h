@@ -10,7 +10,8 @@ public:
 	int m_iRadius;
 	void Update(float x, float y);
 	void Render();
-	Circle(int x, int y, int radius, int id, int velocity);
+	void SetGiaTri(int x, int y, int id, int m_iRadius);
+	Circle();
 	~Circle();
 };
 
