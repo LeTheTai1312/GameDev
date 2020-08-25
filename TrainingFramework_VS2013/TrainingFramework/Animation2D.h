@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "../Utilities/utilities.h"
 #include "Texture.h"
 #include "model.h"
@@ -31,8 +31,8 @@ public:
 	int curent_frame_indx;
 	int curent_texture;
 	int frames_count;
-	int x_temp;
-	int y_temp;
+	int m_vx;// vận tốc di chuyển của một đối tượng hiện tại theo trục x và y
+	int m_vy;
 	int signal;
 	int frameNum;
 	float dtTm;

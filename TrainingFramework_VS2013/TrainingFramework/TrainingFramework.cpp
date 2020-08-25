@@ -39,6 +39,7 @@ int Init ( ESContext *esContext )
 
 void Draw ( ESContext *esContext)
 {
+	
 	Singleton<Game>::GetInstance()->Draw();
 	//Singleton<Sprite2D>::GetInstance()->Draw();
 	eglSwapBuffers(esContext->eglDisplay, esContext->eglSurface);
@@ -48,7 +49,6 @@ void Update ( ESContext *esContext, float deltaTime)
 {
 	if (Move) {
 		Singleton<Game>::GetInstance()->mouse_animation_move(a, b);
-		//Move = false;
 	}
 	Singleton<Game>::GetInstance()->Update_animation(deltaTime);
 	//Singleton<Game>::GetInstance()->Update(deltaTime);
@@ -67,11 +67,6 @@ void TouchActionDown(ESContext* esContext, int x, int y)
 	//cout << x << "-" << y << endl;
 	//Singleton<Game>::GetInstance()->mouse_animation_move(x, y);
 }
-
-void TouchActionUp(ESContext* esContext, int x, int y)
-{
-}
-
 void TouchActionMove(ESContext* esContext, int x, int y)
 {
 	Move = true;
@@ -80,7 +75,10 @@ void TouchActionMove(ESContext* esContext, int x, int y)
 	//cout << x << "-" << y << endl;
 	//Singleton<Game>::GetInstance()->mouse_animation_move(x,y);
 }
-
+void TouchActionUp(ESContext* esContext, int x, int y)
+{
+	Move = false;
+}
 void CleanUp()
 {	
 	for (int i = 0; i < Singleton<ResourceManager>::GetInstance()->modelsNum; i++) {
@@ -109,8 +107,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	esRegisterUpdateFunc ( &esContext, Update );
 	esRegisterKeyFunc ( &esContext, Key);
 	esRegisterMouseDownFunc(&esContext, TouchActionDown);
-	esRegisterMouseUpFunc(&esContext, TouchActionUp);
 	esRegisterMouseMoveFunc(&esContext, TouchActionMove);
+	esRegisterMouseUpFunc(&esContext, TouchActionUp);
 	esMainLoop ( &esContext );
 
 	//releasing OpenGL resources

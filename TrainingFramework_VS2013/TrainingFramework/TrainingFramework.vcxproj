@@ -53,7 +53,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>C:\Users\Admin\Documents\GitHub\GameDev\TrainingFramework_VS2013\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Documents\GitHub\GameDev\TrainingFramework_VS2013\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -101,7 +101,7 @@
     <ClCompile Include="model.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Physic.cpp" />
-    <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="Rectangl.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Sprite2D.cpp" />
@@ -123,7 +123,7 @@
     <ClInclude Include="model.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Physic.h" />
-    <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="Rectangl.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Shaders.h" />
