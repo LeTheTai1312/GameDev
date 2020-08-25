@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "../Utilities/utilities.h"
 #include "Object.h"
 #include "ResourceManager.h"
@@ -24,6 +24,9 @@ public:
 	void free();
 	SceneManager();
 	~SceneManager();
+	void CheckCollision(Rectangl rect1, Rectangl rect2);// va chạm giữa các điểm thể hiện mồm con cá thứ nhất và con cá thứ 2
+	void CheckCollision(Rectangl rect, Circle cir);// va chạm giữa điểm chính giữa con cá thứ nhất và vòng tròn báo hiệu của con cá thứ 2
+
 	static SceneManager* GetInstance(float);
 private:
 	static SceneManager* s_Instance;
