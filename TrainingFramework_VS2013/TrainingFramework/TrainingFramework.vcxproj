@@ -137,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\Models\animation.nfg" />
+    <None Include="..\Resources\Models\background.nfg" />
     <None Include="..\Resources\Models\SkyBox.nfg" />
     <None Include="..\Resources\Models\sprite.nfg" />
     <None Include="..\Resources\Models\Terrain.nfg" />

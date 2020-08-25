@@ -96,9 +96,9 @@ void Animation2D::update(float deltaTime)
 		frame[3] /= Singleton<ResourceManager>::GetInstance()->TD_Textures[curent_texture].height;
 
 		modela.vertices[0].uv.x = (modela.vertices[0].uv.x + frame[2]); modela.vertices[0].uv.y = frame[1];
-		modela.vertices[1].uv.x = (modela.vertices[1].uv.x + frame[2]); modela.vertices[1].uv.y =  (frame[1] + frame[3]);
-		modela.vertices[2].uv.x = (modela.vertices[2].uv.x + frame[2]); modela.vertices[2].uv.y =  (frame[1] + frame[3]);
-		modela.vertices[3].uv.x = (modela.vertices[3].uv.x + frame[2]); modela.vertices[3].uv.y =  frame[1];
+		modela.vertices[1].uv.x = (modela.vertices[1].uv.x + frame[2]); modela.vertices[1].uv.y = (frame[1] + frame[3]);
+		modela.vertices[2].uv.x = (modela.vertices[2].uv.x + frame[2]); modela.vertices[2].uv.y = (frame[1] + frame[3]);
+		modela.vertices[3].uv.x = (modela.vertices[3].uv.x + frame[2]); modela.vertices[3].uv.y = frame[1];
 
 		glBindBuffer(GL_ARRAY_BUFFER, modela.vboId);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 4, modela.vertices, GL_STATIC_DRAW);
@@ -151,7 +151,7 @@ void Animation2D::update_animation_move_player(int x, int y)
 	float k = y - b;
 	if (j <= 0 && c == 0) {
 		play();
-		curent_texture = texture[2];
+		//curent_texture = texture[2];
 		curent_texture = texture[1];
 		signal = 1;
 		c = 1;

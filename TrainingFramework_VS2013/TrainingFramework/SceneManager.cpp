@@ -109,11 +109,11 @@ void SceneManager::loadObjects(char *l) {
 
 void SceneManager::draw() {
 	Singleton<Camera>::GetInstance()->set_CamVP();
-	for (int i = 0; i < animNum; i++) {
-		anim[i].draw_anim();
-	}
 	for (int i = 0; i < objectNum; i++) {
 		objects[i].draw();
+	}
+	for (int i = animNum - 1; i >= 0; i--) {
+		anim[i].draw_anim();
 	}
 }
 

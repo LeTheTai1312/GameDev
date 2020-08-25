@@ -182,6 +182,9 @@
     <None Include="..\Resources\Models\animation.nfg">
       <Filter>Resources\file</Filter>
     </None>
+    <None Include="..\Resources\Models\background.nfg">
+      <Filter>Resources\file</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resources\Textures\back.tga">
