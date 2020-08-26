@@ -85,7 +85,7 @@ void Animation2D::update(float deltaTime)
 	frame_wait += deltaTime;
 	
 	if (anim_cursor > speed) {
-		curent_frame_indx = (curent_frame_indx + 1) % frames_count;
+		//curent_frame_indx = (curent_frame_indx + 1) % frames_count;
 		anim_cursor = 0;
 		//vector<float> frame = frames[curent_frame_indx];
 		vector<float> frame = Singleton<ResourceManager>::GetInstance()->frames[frameNum];
@@ -100,6 +100,9 @@ void Animation2D::update(float deltaTime)
 		modela.vertices[2].uv.x = (modela.vertices[2].uv.x + frame[2]); modela.vertices[2].uv.y = (frame[1] + frame[3]);
 		modela.vertices[3].uv.x = (modela.vertices[3].uv.x + frame[2]); modela.vertices[3].uv.y = frame[1];
 
+		countFrame ++;
+		//cout << countFrame;
+
 		glBindBuffer(GL_ARRAY_BUFFER, modela.vboId);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 4, modela.vertices, GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -112,6 +115,30 @@ void Animation2D::load_element(const char* fileName){
 	curent_frame_indx = 0;
 	frame_wait = 0;
 	signal = 0;
+	countFrame = 0;
+	//speed = 0.05f;
+	//float a, b, c, d;
+	//FILE* file;
+
+	//file = fopen(fileName, "r");
+	//for (int i = 0; i < 11; i++) {
+	//	//vector<int> result;
+	//	fscanf(file, "%d %f,%f,%f,%f\n", &index, &a, &b, &c, &d);
+	//	/*result.push_back(a);
+	//	result.push_back(b);
+	//	result.push_back(c);
+	//	result.push_back(d);*/
+	//	vector<float> frame;
+	//	frame.push_back(a);
+	//	frame.push_back(b);
+	//	frame.push_back(c);
+	//	frame.push_back(d);
+	//	frames.push_back(frame);
+	//}
+	//play();
+
+
+	//frames_count = (int)frames.size();
 
 	//fclose(file);
 	modela.init("../Resources/Models/animation.nfg");
@@ -120,74 +147,31 @@ void Animation2D::load_element(const char* fileName){
 int c = 0;
 void Animation2D::update_animation_move_player(int x, int y)
 {
-	int v = 3;//vận tốc tính theo pixel ban đầu mặc định
+	int v = 2;//vận tốc tính theo pixel ban đầu mặc định
 	float a = (txw + 1.5) * Globals::screenWidth / 3;
 	float b = (1.5 - tyw) * Globals::screenHeight / 3;//toa do vi tri cua player hien tai tinh theo pixel
-	
-	//vector chi huong chuyen dong 
-	float j = x - a;
+
+	float j = x - a;//vector chi huong chuyen dong 
 	float k = y - b;
-
-	// đoạn xét cá quay đầu
 	if (j <= 0 && c == 0) {
+		curent_texture = texture[2];
 		play();
-		//curent_texture = texture[2];
-		curent_texture = texture[1];
-		signal = 1;
+		countFrame = 0;
 		c = 1;
+		signal = 1;
 	}
 	else if (j > 0 && c == 1) {
+		curent_texture = texture[3];
 		play();
-		curent_texture = texture[0];
+		countFrame = 0;
 		signal = 0;
 		c = 0;
 	}
-
-	// vận tốc di chuyển
-	float c = v * (float)j / sqrt(j * j + k * k);
-	float d = v * (float)k / sqrt(j * j + k * k);
-	m_vx = c;m_vy = d;
-	//vị trí sau khi di chuyển
-	a += c;
-	b += d;
-	// gán vị trí mới
-	txw = ((float)a / Globals::screenWidth) * 3.0 - 1.5;
-	tyw = -(((float)b / Globals::screenHeight) * 3.0 - 1.5);
-
-}
-
-void Animation2D::update_animation_move_boss()
-{
-	int v = 3;//vận tốc tính theo pixel ban đầu mặc định
-	float a = (txw + 1.5) * Globals::screenWidth / 3;
-	float b = (1.5 - tyw) * Globals::screenHeight / 3;//toa do vi tri cua player hien tai tinh theo pixel
-	float j, k;
-	if (a > 0) {
-		j = 1;k = 0;
-	}
-	else {
-		j = -1; k = 0;
-	}
-
-	if (j <= 0 && c == 0) {
-		play();
-		curent_texture = texture[1];
-		signal = 1;
-		c = 1;
-		cout << c;
-	}
-	else if (j > 0 && c == 1) {
-		play();
-		curent_texture = texture[0];
-		signal = 0;
-		c = 0;
-		cout << c;
-	}
-
+	turning();
 
 	float c = v * (float)j / sqrt(j * j + k * k);
 	float d = v * (float)k / sqrt(j * j + k * k);
-	m_vx = c; m_vy = d;
+
 	a += c;//vị trí sau khi di chuyển
 	b += d;
 
@@ -196,3 +180,79 @@ void Animation2D::update_animation_move_boss()
 
 }
 
+void Animation2D::turning()
+{
+	if (countFrame == 5 && c == 1) {
+		curent_texture = texture[1];
+		play();
+	}
+	else if (countFrame == 5 && c == 0) {
+		curent_texture = texture[0];
+		play();
+	}
+	check = 1;
+}
+
+void Animation2D::checkEvent() {
+
+}
+
+void Animation2D::update_animation_move_boss()
+{
+	int v = 3;//vận tốc tính theo pixel ban đầu mặc định
+	float a = (txw + 1.5) * Globals::screenWidth / 3;
+	float b = (1.5 - tyw) * Globals::screenHeight / 3;//toa do vi tri cua player hien tai tinh theo pixel
+
+	/*float j = x - a;//vector chi huong chuyen dong
+	float k = y - b;
+	if (j <= 0 && c == 0) {
+		play();
+		curent_texture = texture[1];
+		signal = 1;
+		c = 1;
+		cout << c;
+	}
+	else if (j > 0 && c == 1) {
+		play();
+		curent_texture = texture[0];
+		signal = 0;
+		c = 0;
+		cout << c;
+	}
+
+
+	float c = v * (float)j / sqrt(j * j + k * k);
+	float d = v * (float)k / sqrt(j * j + k * k);
+
+	a += c;//vị trí sau khi di chuyển
+	b += d;
+
+	txw = ((float)a / Globals::screenWidth) * 3.0 - 1.5;
+	tyw = -(((float)b / Globals::screenHeight) * 3.0 - 1.5);
+	*/
+}
+//void Animation2D::update_animation_move(int x, int y)
+//{
+//	if (x < x_temp && c == 0) {
+//		play();
+//		curent_texture = texture[1];
+//		signal = 1;
+//		c = 1;
+//		cout << c;
+//	}
+//	else if (x > x_temp && c == 1) {
+//		play();
+//		curent_texture = texture[0];
+//		signal = 0;
+//		c = 0;
+//		cout << c;
+//	}
+//	float a = ((float)x / Globals::screenWidth)*3.0 - 1.5;
+//	float b = -(((float)y / Globals::screenHeight) * 3.0 - 1.5);
+//	/*float a;
+//	float b;
+//	txw = 0.5 * dtTm; 
+//	tyw = ((float)y - y_temp) / ((float)x - x_temp)*txw ;*/
+//	txw = a; tyw = b;
+//	x_temp = x; y_temp = y;
+//}

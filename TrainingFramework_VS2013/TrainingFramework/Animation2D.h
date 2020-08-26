@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "../Utilities/utilities.h"
 #include "Texture.h"
 #include "model.h"
@@ -24,16 +24,20 @@ public:
 	void load_element(const char* fileName);
 	void update_animation_move_player(int x, int y);
 	void update_animation_move_boss();
+	void turning();
+	void checkEvent();
 	vector<float> frame; // vector kich thuoc hinh chu nhat
 	Rectangl rect;
 	Circle cir;
 	model modela;
 	double anim_cursor;
+	int check;
+	int countFrame;
 	int curent_frame_indx;
 	int curent_texture;
 	int frames_count;
-	int m_vx;// vận tốc di chuyển của một đối tượng hiện tại theo trục x và y
-	int m_vy;
+	int x_temp;
+	int y_temp;
 	int signal;
 	int frameNum;
 	float dtTm;
