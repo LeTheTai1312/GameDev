@@ -47,7 +47,7 @@ LRESULT WINAPI ESWindowProc ( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam
 		  }
 		  break;
       case WM_MOUSEMOVE:
-          if (wParam & MK_LBUTTON)
+         // if (wParam & MK_LBUTTON)
           {
               POINTS      point;
               ESContext* esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);

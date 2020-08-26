@@ -153,19 +153,21 @@ void Animation2D::update_animation_move_player(int x, int y)
 
 	float j = x - a;//vector chi huong chuyen dong 
 	float k = y - b;
-	if (j <= 0 && c == 0) {
+	if (j <= -5 && c == 0) {
 		curent_texture = texture[2];
 		play();
 		countFrame = 0;
 		c = 1;
 		signal = 1;
+		
 	}
-	else if (j > 0 && c == 1) {
+	else if (j > 5 && c == 1) {
 		curent_texture = texture[3];
 		play();
 		countFrame = 0;
 		signal = 0;
 		c = 0;
+		
 	}
 	turning();
 

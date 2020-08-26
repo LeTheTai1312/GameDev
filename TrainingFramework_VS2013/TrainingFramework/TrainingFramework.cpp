@@ -65,16 +65,14 @@ void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 
 void TouchActionDown(ESContext* esContext, int x, int y)
 {
-	Move = true;
-	a = x;
-	b = y;
+	
 	//cout << x << "-" << y << endl;
 	//Singleton<Game>::GetInstance()->mouse_animation_move(x, y);
 }
 
 void TouchActionUp(ESContext* esContext, int x, int y)
 {
-	Move = false;
+	
 }
 
 void TouchActionMove(ESContext* esContext, int x, int y)
