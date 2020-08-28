@@ -23,14 +23,21 @@ public:
 	void update(float);
 	void load_element(const char* fileName);
 	void update_animation_move_player(int x, int y);
-	void update_animation_move_boss();
-	void turning();
-	void checkEvent();
+	void update_animation_move_boss(float);
+	void turning(); // ca quay dau
+	void bite();
+	bool checkEvent(); //kiem tra event ca quay dau xong
+	void initShape();
+	void initCir();
+	void disapear();
+	void SetVectorh(float a, float b, float deltaTime);
 	vector<float> frame; // vector kich thuoc hinh chu nhat
 	Rectangl rect;
 	Circle cir;
 	model modela;
 	double anim_cursor;
+	int disapear_wait = 0; //
+	int size;
 	int check;
 	int countFrame;
 	int curent_frame_indx;
@@ -38,10 +45,13 @@ public:
 	int frames_count;
 	int x_temp;
 	int y_temp;
-	int signal;
+	int signal; // 1 = turn; 3 = bite;
+	int c = 0;
 	int frameNum;
+	float m_hx, m_hy;
+	float sx, sy, sz;
 	float dtTm;
-	float frame_wait;
+	float bite_wait = 0;
 	float speed;
 
 	vector<vector<float>> frames;

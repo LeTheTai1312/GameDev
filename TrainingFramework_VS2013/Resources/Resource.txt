@@ -18,34 +18,47 @@ FILE ../Resources/Models/animation.nfg
 ID 8
 FILE ../Resources/Models/background.nfg
 
-#2D Textures: 9
+#2D Textures: 13
 ID 0
-FILE ../Resources/Textures/f_idle_R.png
-TILING CLAMP
-ID 1
-FILE ../Resources/Textures/f_idle_L.png
-TILING CLAMP
-ID 2
-FILE ../Resources/Textures/f_rotate_1.png
-TILING CLAMP
-ID 3
-FILE ../Resources/Textures/f_rotate_2.png
-TILING CLAMP
-ID 4
-FILE ../Resources/Textures/f2_idle_R.png
-TILING CLAMP
-ID 5
-FILE ../Resources/Textures/f2_idle_L.png
-TILING CLAMP
-ID 6
-FILE ../Resources/Textures/f2_rotate_L.png
-TILING CLAMP
-ID 7
-FILE ../Resources/Textures/f2_rotate_R.png
-TILING CLAMP
-ID 8
 FILE ../Resources/Textures/bg1.png
 TILING CLAMP
+ID 1
+FILE ../Resources/Textures/f_idle_R.png
+TILING CLAMP
+ID 2
+FILE ../Resources/Textures/f_idle_L.png
+TILING CLAMP
+ID 3
+FILE ../Resources/Textures/f_rotate_1.png
+TILING CLAMP
+ID 4
+FILE ../Resources/Textures/f_rotate_2.png
+TILING CLAMP
+ID 5
+FILE ../Resources/Textures/f_bite_R.png
+TILING CLAMP
+ID 6
+FILE ../Resources/Textures/f_bite_L.png
+TILING CLAMP
+ID 7
+FILE ../Resources/Textures/f2_idle_R.png
+TILING CLAMP
+ID 8
+FILE ../Resources/Textures/f2_idle_L.png
+TILING CLAMP
+ID 9
+FILE ../Resources/Textures/f2_rotate_L.png
+TILING CLAMP
+ID 10
+FILE ../Resources/Textures/f2_rotate_R.png
+TILING CLAMP
+ID 11
+FILE ../Resources/Textures/f2_bite_R.png
+TILING CLAMP
+ID 12
+FILE ../Resources/Textures/f2_bite_L.png
+TILING CLAMP
+
 
 #Cube Textures: 6
 ID 0

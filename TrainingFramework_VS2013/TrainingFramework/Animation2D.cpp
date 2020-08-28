@@ -1,9 +1,13 @@
 ﻿#include "stdafx.h"
 #include "Animation2D.h"
 #include <string>
+#include <time.h>
 
 Animation2D::Animation2D(){
-
+	srand(time(NULL));
+	m_hx = (float)rand();
+	srand(time(NULL));
+	m_hy = (float)rand();
 }
 
 Animation2D::~Animation2D()
@@ -80,9 +84,10 @@ void Animation2D::draw_anim()
 
 void Animation2D::update(float deltaTime)
 {
+	initShape();
 	anim_cursor += deltaTime;
 	dtTm = deltaTime;
-	frame_wait += deltaTime;
+	//frame_wait += deltaTime;
 	
 	if (anim_cursor > speed) {
 		//curent_frame_indx = (curent_frame_indx + 1) % frames_count;
@@ -113,61 +118,48 @@ void Animation2D::load_element(const char* fileName){
 	int index;
 	anim_cursor = 0;
 	curent_frame_indx = 0;
-	frame_wait = 0;
 	signal = 0;
 	countFrame = 0;
-	//speed = 0.05f;
-	//float a, b, c, d;
-	//FILE* file;
-
-	//file = fopen(fileName, "r");
-	//for (int i = 0; i < 11; i++) {
-	//	//vector<int> result;
-	//	fscanf(file, "%d %f,%f,%f,%f\n", &index, &a, &b, &c, &d);
-	//	/*result.push_back(a);
-	//	result.push_back(b);
-	//	result.push_back(c);
-	//	result.push_back(d);*/
-	//	vector<float> frame;
-	//	frame.push_back(a);
-	//	frame.push_back(b);
-	//	frame.push_back(c);
-	//	frame.push_back(d);
-	//	frames.push_back(frame);
-	//}
-	//play();
-
-
-	//frames_count = (int)frames.size();
-
-	//fclose(file);
+	sx = sxw; sy = syw; sz = szw;
 	modela.init("../Resources/Models/animation.nfg");
-	//model a = model(Singleton<ResourceManager>::GetInstance()->models[models]);
 }
-int c = 0;
 void Animation2D::update_animation_move_player(int x, int y)
 {
-	int v = 2;//vận tốc tính theo pixel ban đầu mặc định
+	int v = 1;//vận tốc tính theo pixel ban đầu mặc định
 	float a = (txw + 1.5) * Globals::screenWidth / 3;
 	float b = (1.5 - tyw) * Globals::screenHeight / 3;//toa do vi tri cua player hien tai tinh theo pixel
 
 	float j = x - a;//vector chi huong chuyen dong 
 	float k = y - b;
-	if (j <= 0 && c == 0) {
-		curent_texture = texture[2];
-		play();
+	if (j <= -2 && c == 0) { // bat su kien ca quay dau
 		countFrame = 0;
 		c = 1;
 		signal = 1;
 	}
-	else if (j > 0 && c == 1) {
-		curent_texture = texture[3];
-		play();
+	else if (j > 2 && c == 1) {
 		countFrame = 0;
-		signal = 0;
+		signal = 1;
 		c = 0;
 	}
 	turning();
+	bite();
+	disapear();
+	if (countFrame == 5 && c == 1) {
+		curent_texture = texture[1];
+		play();
+		countFrame = 0;
+		signal = 0;
+		bite_wait = 0;
+		disapear_wait = 0;
+	}
+	else if (countFrame == 5 && c == 0) {
+		curent_texture = texture[0];
+		play();
+		countFrame = 0;
+		signal = 0;
+		bite_wait = 0;
+		disapear_wait = 0;
+	}
 
 	float c = v * (float)j / sqrt(j * j + k * k);
 	float d = v * (float)k / sqrt(j * j + k * k);
@@ -182,77 +174,187 @@ void Animation2D::update_animation_move_player(int x, int y)
 
 void Animation2D::turning()
 {
+	if (signal == 1 && c == 0) {
+		curent_texture = texture[3];
+		play();
+		countFrame = 0;
+		signal = 0;
+	}
+	else if (signal == 1 && c == 1)
+	{
+		curent_texture = texture[2];
+		play();
+		countFrame = 0;
+		signal = 0;
+	}
+}
+
+void Animation2D::bite()
+{
+	if (signal == 3 && c == 0 && bite_wait == 0) {
+		curent_texture = texture[4];
+		play();
+		countFrame = 0;
+		signal = 0;
+		bite_wait = 1;
+	}
+	else if (signal == 3 && c == 1 && bite_wait == 0) {
+		curent_texture = texture[5];
+		play();
+		countFrame = 0;
+		signal = 0;
+		bite_wait = 1;
+	}
+}
+
+void Animation2D::disapear()
+{
+	//cout << disapear_wait;
+	if ((sxw > 0.01 || syw > 0.01 || szw > 0.01) && disapear_wait == 1) {
+		sxw -= 0.01;
+		syw -= 0.01;
+		szw -= 0.01;
+	}
+}
+
+float pp = 0;//tinh time doi chuyen dong
+void Animation2D::SetVectorh(float a, float b, float deltatime)
+{
+	if (pp < 10)
+	{
+		pp += deltatime;
+	}
+	else {
+		pp = 0;
+		srand(time(NULL));
+		m_hx = (float)rand();
+		srand(time(NULL));
+		m_hy = (float)rand();
+	}
+
+	int t;
+	if (a < 0) {
+		t = 3;
+	}
+	else if (a > 960)
+	{
+		t = 4;
+	}
+	else if (b > 720)
+	{
+		t = 2;
+	}
+	else if (b < 0)
+	{
+		t = 1;
+	}
+	else {
+		t = 0;
+	}
+
+	switch (t)
+	{
+	case 1:
+	{
+		m_hx = 0;
+		m_hy = 1;
+		break;
+	}
+	case 2:
+	{
+		m_hx = 0;
+		m_hy = -1;
+		break;
+	}
+	case 3:
+	{
+		m_hx = 1;
+		m_hy = 0;
+		break;
+	}
+	case 4:
+	{
+		m_hx = -1;
+		m_hy = 0;
+		break;
+	}
+	default:
+		break;
+	}
+}
+
+
+bool Animation2D::checkEvent() {
+	if (check == 1) {
+		check = 0;
+		return true;
+	}
+	return false;
+}
+
+void Animation2D::update_animation_move_boss(float deltaTime)
+{
+	int vb = 1;//vận tốc tính theo pixel ban đầu mặc định
+	float a = (txw + 1.5) * Globals::screenWidth / 3;
+	float b = (1.5 - tyw) * Globals::screenHeight / 3;//toa do vi tri cua player hien tai tinh theo pixel
+	SetVectorh(a, b, deltaTime);
+	float j = m_hx;//vector chi huong chuyen dong
+	float k = m_hy;
+	if (j <= 0 && c == 0) { // bat su kien ca quay dau
+		countFrame = 0;
+		c = 1;
+		signal = 1;
+	}
+	else if (j > 0 && c == 1) {
+		countFrame = 0;
+		signal = 1;
+		c = 0;
+	}
+	turning();
+	bite();
+	disapear();
 	if (countFrame == 5 && c == 1) {
 		curent_texture = texture[1];
 		play();
+		countFrame = 0;
+		signal = 0;
+		bite_wait = 0;
+		disapear_wait = 0;
 	}
 	else if (countFrame == 5 && c == 0) {
 		curent_texture = texture[0];
 		play();
-	}
-	check = 1;
-}
-
-void Animation2D::checkEvent() {
-
-}
-
-void Animation2D::update_animation_move_boss()
-{
-	int v = 3;//vận tốc tính theo pixel ban đầu mặc định
-	float a = (txw + 1.5) * Globals::screenWidth / 3;
-	float b = (1.5 - tyw) * Globals::screenHeight / 3;//toa do vi tri cua player hien tai tinh theo pixel
-
-	/*float j = x - a;//vector chi huong chuyen dong
-	float k = y - b;
-	if (j <= 0 && c == 0) {
-		play();
-		curent_texture = texture[1];
-		signal = 1;
-		c = 1;
-		cout << c;
-	}
-	else if (j > 0 && c == 1) {
-		play();
-		curent_texture = texture[0];
+		countFrame = 0;
 		signal = 0;
-		c = 0;
-		cout << c;
+		bite_wait = 0;
+		disapear_wait = 0;
 	}
 
-
-	float c = v * (float)j / sqrt(j * j + k * k);
-	float d = v * (float)k / sqrt(j * j + k * k);
+	float c = vb*(float)j / sqrt(j * j + k * k);
+	float d = vb*(float)k / sqrt(j * j + k * k);
 
 	a += c;//vị trí sau khi di chuyển
 	b += d;
 
 	txw = ((float)a / Globals::screenWidth) * 3.0 - 1.5;
 	tyw = -(((float)b / Globals::screenHeight) * 3.0 - 1.5);
-	*/
 }
-//void Animation2D::update_animation_move(int x, int y)
-//{
-//	if (x < x_temp && c == 0) {
-//		play();
-//		curent_texture = texture[1];
-//		signal = 1;
-//		c = 1;
-//		cout << c;
-//	}
-//	else if (x > x_temp && c == 1) {
-//		play();
-//		curent_texture = texture[0];
-//		signal = 0;
-//		c = 0;
-//		cout << c;
-//	}
-//	float a = ((float)x / Globals::screenWidth)*3.0 - 1.5;
-//	float b = -(((float)y / Globals::screenHeight) * 3.0 - 1.5);
-//	/*float a;
-//	float b;
-//	txw = 0.5 * dtTm; 
-//	tyw = ((float)y - y_temp) / ((float)x - x_temp)*txw ;*/
-//	txw = a; tyw = b;
-//	x_temp = x; y_temp = y;
-//}
+
+void Animation2D::initShape() {
+	rect.m_iWidth = frame[4];
+	rect.m_iHeight = frame[5];
+	rect.m_iX = ((txw + 1.5) * Globals::screenWidth / 3) - (rect.m_iWidth / 2);
+	rect.m_iY = ((1.5 - tyw) * Globals::screenHeight / 3) - (rect.m_iHeight / 2);
+	cir.m_iX = (txw + 1.5) * Globals::screenWidth / 3;
+	cir.m_iY = (1.5 - tyw) * Globals::screenHeight / 3;
+	cir.m_iRadius = frame[6];
+}
+
+void Animation2D::initCir()
+{
+	cir.m_iX = (txw + 1.5) * Globals::screenWidth / 3;
+	cir.m_iY = (1.5 - tyw) * Globals::screenHeight / 3;
+	cir.m_iRadius = 50;
+}
+
+
