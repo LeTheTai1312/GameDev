@@ -101,6 +101,9 @@ void SceneManager::loadObjects(char *l) {
 		fscanf(file, "POSITION %f, %f, %f\n", &anim[animID].txw, &anim[animID].tyw, &anim[animID].tzw);
 		fscanf(file, "ROTATION %f, %f, %f\n", &anim[animID].rxw, &anim[animID].ryw, &anim[animID].rzw);
 		fscanf(file, "SCALE %f, %f, %f\n", &anim[animID].sxw, &anim[animID].syw, &anim[animID].szw);
+		anim[i].sx = anim[i].sxw;
+		anim[i].sy = anim[i].syw;
+		anim[i].sz = anim[i].szw;
 	}
 
 	fscanf(file, "#CAMERA\nNEAR %f\nFAR %f\nFOV %f\nSPEED %f", &Singleton<Camera>::GetInstance()->nearPlane, &Singleton<Camera>::GetInstance()->farPlane,
@@ -118,13 +121,19 @@ void SceneManager::draw() {
 		anim[i].draw_anim();
 	}
 }
-
+float time = 0;
 void SceneManager::update_animation(float deltaTime) {
 	for (int i = 0; i < animNum; i++) {
 		anim[i].update(deltaTime);
 	}
-	for (int i = 1; i < animNum; i++) {
-		anim[i].update_animation_move_boss(deltaTime);
+	if (time > 0.03) {
+		time = 0;
+		for (int i = 1; i < animNum; i++) {
+			anim[i].update_animation_move_boss(deltaTime);
+		}
+	}
+	else {
+		time += deltaTime;
 	}
 	checkColRecRec();
 }

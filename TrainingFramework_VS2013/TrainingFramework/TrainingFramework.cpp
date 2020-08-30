@@ -20,6 +20,7 @@
 #include "Animation2D.h"
 #include <conio.h>
 #include <iostream>
+#include <time.h>
 
 
 using namespace std;
@@ -64,7 +65,7 @@ void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 
 void TouchActionDown(ESContext* esContext, int x, int y)
 {	
-	//cout << x << "-" << y << endl;
+	cout << x << "-" << y << endl;
 	Move = true;
 	a = x;
 	b = y;
@@ -99,6 +100,7 @@ void CleanUp()
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	srand(time(NULL));
 	ESContext esContext;
 
     esInitContext ( &esContext );

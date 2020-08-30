@@ -30,6 +30,7 @@ public:
 	void initShape();
 	void initCir();
 	void disapear();
+	void zoom();
 	void SetVectorh(float a, float b, float deltaTime);
 	vector<float> frame; // vector kich thuoc hinh chu nhat
 	Rectangl rect;

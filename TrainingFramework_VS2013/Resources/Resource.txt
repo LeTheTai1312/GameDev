@@ -18,7 +18,7 @@ FILE ../Resources/Models/animation.nfg
 ID 8
 FILE ../Resources/Models/background.nfg
 
-#2D Textures: 13
+#2D Textures: 19
 ID 0
 FILE ../Resources/Textures/bg1.png
 TILING CLAMP
@@ -58,6 +58,26 @@ TILING CLAMP
 ID 12
 FILE ../Resources/Textures/f2_bite_L.png
 TILING CLAMP
+ID 13
+FILE ../Resources/Textures/f3_idle_R.png
+TILING CLAMP
+ID 14
+FILE ../Resources/Textures/f3_idle_L.png
+TILING CLAMP
+ID 15
+FILE ../Resources/Textures/f3_rotate_L.png
+TILING CLAMP
+ID 16
+FILE ../Resources/Textures/f3_rotate_R.png
+TILING CLAMP
+ID 17
+FILE ../Resources/Textures/f3_bite_R.png
+TILING CLAMP
+ID 18
+FILE ../Resources/Textures/f3_bite_L.png
+TILING CLAMP
+
+
 
 
 #Cube Textures: 6

@@ -4,10 +4,8 @@
 #include <time.h>
 
 Animation2D::Animation2D(){
-	srand(time(NULL));
-	m_hx = (float)rand();
-	srand(time(NULL));
-	m_hy = (float)rand();
+	m_hx = (static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 100)));
+	m_hy = (static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 100)));
 }
 
 Animation2D::~Animation2D()
@@ -120,17 +118,29 @@ void Animation2D::load_element(const char* fileName){
 	curent_frame_indx = 0;
 	signal = 0;
 	countFrame = 0;
-	sx = sxw; sy = syw; sz = szw;
+
+	/*srand(time(NULL));
+	int res = (float)rand();*/
+
+	cout << m_hx << "-" << m_hy << endl;
 	modela.init("../Resources/Models/animation.nfg");
 }
 void Animation2D::update_animation_move_player(int x, int y)
 {
-	int v = 1;//vận tốc tính theo pixel ban đầu mặc định
+	int v = 3.5;//vận tốc tính theo pixel ban đầu mặc định
 	float a = (txw + 1.5) * Globals::screenWidth / 3;
 	float b = (1.5 - tyw) * Globals::screenHeight / 3;//toa do vi tri cua player hien tai tinh theo pixel
 
 	float j = x - a;//vector chi huong chuyen dong 
 	float k = y - b;
+	float cc = v * (float)j / sqrt(j * j + k * k);
+	float d = v * (float)k / sqrt(j * j + k * k);
+
+	a += cc;//vị trí sau khi di chuyển
+	b += d;
+
+	txw = ((float)a / Globals::screenWidth) * 3.0 - 1.5;
+	tyw = -(((float)b / Globals::screenHeight) * 3.0 - 1.5);
 	if (j <= -2 && c == 0) { // bat su kien ca quay dau
 		countFrame = 0;
 		c = 1;
@@ -143,7 +153,7 @@ void Animation2D::update_animation_move_player(int x, int y)
 	}
 	turning();
 	bite();
-	disapear();
+	zoom();
 	if (countFrame == 5 && c == 1) {
 		curent_texture = texture[1];
 		play();
@@ -161,15 +171,54 @@ void Animation2D::update_animation_move_player(int x, int y)
 		disapear_wait = 0;
 	}
 
-	float c = v * (float)j / sqrt(j * j + k * k);
-	float d = v * (float)k / sqrt(j * j + k * k);
 
-	a += c;//vị trí sau khi di chuyển
+}
+
+void Animation2D::update_animation_move_boss(float deltaTime)
+{
+	int vb = 2;//vận tốc tính theo pixel ban đầu mặc định
+	float a = (txw + 1.5) * Globals::screenWidth / 3;
+	float b = (1.5 - tyw) * Globals::screenHeight / 3;//toa do vi tri cua player hien tai tinh theo pixel
+	SetVectorh(a, b, deltaTime);
+	float j = m_hx;//vector chi huong chuyen dong
+	float k = m_hy;
+	float cc = vb * (float)j / sqrt(j * j + k * k);
+	float d = vb * (float)k / sqrt(j * j + k * k);
+
+	a += cc;//vị trí sau khi di chuyển
 	b += d;
 
 	txw = ((float)a / Globals::screenWidth) * 3.0 - 1.5;
 	tyw = -(((float)b / Globals::screenHeight) * 3.0 - 1.5);
-
+	if (j <= 0 && c == 0) { // bat su kien ca quay dau
+		countFrame = 0;
+		c = 1;
+		signal = 1;
+	}
+	else if (j > 0 && c == 1) {
+		countFrame = 0;
+		signal = 1;
+		c = 0;
+	}
+	turning();
+	bite();
+	zoom();
+	if (countFrame == 5 && c == 1) {
+		curent_texture = texture[1];
+		play();
+		countFrame = 0;
+		signal = 0;
+		bite_wait = 0;
+		disapear_wait = 0;
+	}
+	else if (countFrame == 5 && c == 0) {
+		curent_texture = texture[0];
+		play();
+		countFrame = 0;
+		signal = 0;
+		bite_wait = 0;
+		disapear_wait = 0;
+	}
 }
 
 void Animation2D::turning()
@@ -209,11 +258,38 @@ void Animation2D::bite()
 
 void Animation2D::disapear()
 {
-	//cout << disapear_wait;
-	if ((sxw > 0.01 || syw > 0.01 || szw > 0.01) && disapear_wait == 1) {
-		sxw -= 0.01;
-		syw -= 0.01;
-		szw -= 0.01;
+	sxw = sx;
+	syw = sy;
+	szw = sz;
+	int res = rand() % (4 - 1 + 1) + 1;
+	if (res == 1) {
+		srand(time(NULL));
+		txw = -(rand() % (250 - 230 + 1) + 230) / 100;
+		tyw = ((rand() % (500 - 0 + 1) + 0) - 250) / 100;
+	}
+	else if (res == 2) {
+		txw = (rand() % (250 - 230 + 1) + 230) / 100;
+		tyw = ((rand() % (500 - 0 + 1) + 0) - 250) / 100;
+	}
+	else if (res == 3) {
+		txw = ((rand() % (460 - 0 + 1) + 0) - 230) / 100;
+		tyw = (rand() % (250 - 230 + 1) + 230) / 100;
+	}
+	else if (res == 4) {
+		txw = ((rand() % (460 - 0 + 1) + 0) - 230) / 100;
+		tyw = -(rand() % (250 - 230 + 1) + 230) / 100;
+	}
+	
+}
+
+void Animation2D::zoom() {
+	if ((sxw >= (sx / 3) || syw >= (sx / 3) || szw >= (sx / 3)) && disapear_wait == 1) {
+		sxw -= (sx / 3);
+		syw -= (sy / 3);
+		szw -= (sz / 3);
+	}
+	if (sxw < (sx / 3) && disapear_wait == 0) {
+		disapear();
 	}
 }
 
@@ -236,11 +312,11 @@ void Animation2D::SetVectorh(float a, float b, float deltatime)
 	if (a < 0) {
 		t = 3;
 	}
-	else if (a > 960)
+	else if (a > 1160)
 	{
 		t = 4;
 	}
-	else if (b > 720)
+	else if (b > 870)
 	{
 		t = 2;
 	}
@@ -290,54 +366,6 @@ bool Animation2D::checkEvent() {
 		return true;
 	}
 	return false;
-}
-
-void Animation2D::update_animation_move_boss(float deltaTime)
-{
-	int vb = 1;//vận tốc tính theo pixel ban đầu mặc định
-	float a = (txw + 1.5) * Globals::screenWidth / 3;
-	float b = (1.5 - tyw) * Globals::screenHeight / 3;//toa do vi tri cua player hien tai tinh theo pixel
-	SetVectorh(a, b, deltaTime);
-	float j = m_hx;//vector chi huong chuyen dong
-	float k = m_hy;
-	if (j <= 0 && c == 0) { // bat su kien ca quay dau
-		countFrame = 0;
-		c = 1;
-		signal = 1;
-	}
-	else if (j > 0 && c == 1) {
-		countFrame = 0;
-		signal = 1;
-		c = 0;
-	}
-	turning();
-	bite();
-	disapear();
-	if (countFrame == 5 && c == 1) {
-		curent_texture = texture[1];
-		play();
-		countFrame = 0;
-		signal = 0;
-		bite_wait = 0;
-		disapear_wait = 0;
-	}
-	else if (countFrame == 5 && c == 0) {
-		curent_texture = texture[0];
-		play();
-		countFrame = 0;
-		signal = 0;
-		bite_wait = 0;
-		disapear_wait = 0;
-	}
-
-	float c = vb*(float)j / sqrt(j * j + k * k);
-	float d = vb*(float)k / sqrt(j * j + k * k);
-
-	a += c;//vị trí sau khi di chuyển
-	b += d;
-
-	txw = ((float)a / Globals::screenWidth) * 3.0 - 1.5;
-	tyw = -(((float)b / Globals::screenHeight) * 3.0 - 1.5);
 }
 
 void Animation2D::initShape() {
