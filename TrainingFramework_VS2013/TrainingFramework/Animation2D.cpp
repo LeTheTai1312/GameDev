@@ -176,7 +176,7 @@ void Animation2D::update_animation_move_player(int x, int y)
 
 void Animation2D::update_animation_move_boss(float deltaTime)
 {
-	int vb = 2;//vận tốc tính theo pixel ban đầu mặc định
+	//int vb = 2;//vận tốc tính theo pixel ban đầu mặc định
 	float a = (txw + 1.5) * Globals::screenWidth / 3;
 	float b = (1.5 - tyw) * Globals::screenHeight / 3;//toa do vi tri cua player hien tai tinh theo pixel
 	SetVectorh(a, b, deltaTime);
@@ -189,7 +189,7 @@ void Animation2D::update_animation_move_boss(float deltaTime)
 	b += d;
 
 	txw = ((float)a / Globals::screenWidth) * 3.0 - 1.5;
-	tyw = -(((float)b / Globals::screenHeight) * 3.0 - 1.5);
+	tyw = -(((float)b / Globals::screenHeight) * 3.0 - 1.5);	
 	if (j <= 0 && c == 0) { // bat su kien ca quay dau
 		countFrame = 0;
 		c = 1;
@@ -264,31 +264,31 @@ void Animation2D::disapear()
 	int res = rand() % (4 - 1 + 1) + 1;
 	if (res == 1) {
 		srand(time(NULL));
-		txw = -(rand() % (250 - 230 + 1) + 230) / 100;
-		tyw = ((rand() % (500 - 0 + 1) + 0) - 250) / 100;
+		txw = -(rand() % (320 - 300 + 1) + 300) / 100;
+		tyw = ((rand() % (640 - 0 + 1) + 0) - 300) / 100;
 	}
 	else if (res == 2) {
-		txw = (rand() % (250 - 230 + 1) + 230) / 100;
-		tyw = ((rand() % (500 - 0 + 1) + 0) - 250) / 100;
+		txw = (rand() % (320 - 300 + 1) + 300) / 100;
+		tyw = ((rand() % (640 - 0 + 1) + 0) - 300) / 100;
 	}
 	else if (res == 3) {
-		txw = ((rand() % (460 - 0 + 1) + 0) - 230) / 100;
-		tyw = (rand() % (250 - 230 + 1) + 230) / 100;
+		txw = ((rand() % (600 - 0 + 1) + 0) - 300) / 100;
+		tyw = (rand() % (640 - 300 + 1) + 300) / 100;
 	}
 	else if (res == 4) {
-		txw = ((rand() % (460 - 0 + 1) + 0) - 230) / 100;
-		tyw = -(rand() % (250 - 230 + 1) + 230) / 100;
+		txw = ((rand() % (600 - 0 + 1) + 0) - 300) / 100;
+		tyw = -(rand() % (640 - 300 + 1) + 300) / 100;
 	}
 	
 }
 
 void Animation2D::zoom() {
-	if ((sxw >= (sx / 3) || syw >= (sx / 3) || szw >= (sx / 3)) && disapear_wait == 1) {
-		sxw -= (sx / 3);
-		syw -= (sy / 3);
-		szw -= (sz / 3);
+	if ((sxw >= (sx / 2) || syw >= (sx / 2) || szw >= (sx / 2)) && disapear_wait == 1) {
+		sxw -= (sx / 2);
+		syw -= (sy / 2);
+		szw -= (sz / 2);
 	}
-	if (sxw < (sx / 3) && disapear_wait == 0) {
+	if (sxw < (sx / 2.5) && disapear_wait == 0) {
 		disapear();
 	}
 }
@@ -311,18 +311,22 @@ void Animation2D::SetVectorh(float a, float b, float deltatime)
 	int t;
 	if (a < 0) {
 		t = 3;
+		//cout << 3;
 	}
-	else if (a > 1160)
+	else if (a > 1360)
 	{
 		t = 4;
+		//cout << 4;
 	}
-	else if (b > 870)
+	else if (b > 1170)
 	{
 		t = 2;
+		//cout << 4;
 	}
 	else if (b < 0)
 	{
 		t = 1;
+		//cout << 1;
 	}
 	else {
 		t = 0;

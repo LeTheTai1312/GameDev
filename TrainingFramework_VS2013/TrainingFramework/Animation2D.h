@@ -31,13 +31,16 @@ public:
 	void initCir();
 	void disapear();
 	void zoom();
+	void follow();
+	void avoid();
 	void SetVectorh(float a, float b, float deltaTime);
 	vector<float> frame; // vector kich thuoc hinh chu nhat
 	Rectangl rect;
 	Circle cir;
 	model modela;
 	double anim_cursor;
-	int disapear_wait = 0; //
+	int vb; //van toc ca bot
+	int disapear_wait = 0;
 	int size;
 	int check;
 	int countFrame;

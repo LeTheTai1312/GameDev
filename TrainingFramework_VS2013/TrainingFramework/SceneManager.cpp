@@ -98,6 +98,7 @@ void SceneManager::loadObjects(char *l) {
 		anim[animID].shaders.m_texture = new int[a];
 		fscanf(file, "SPEED %f\n", &anim[animID].speed);
 		fscanf(file, "SIZE %d\n", &anim[animID].size);
+		anim[animID].vb = 8 - anim[animID].size;
 		fscanf(file, "POSITION %f, %f, %f\n", &anim[animID].txw, &anim[animID].tyw, &anim[animID].tzw);
 		fscanf(file, "ROTATION %f, %f, %f\n", &anim[animID].rxw, &anim[animID].ryw, &anim[animID].rzw);
 		fscanf(file, "SCALE %f, %f, %f\n", &anim[animID].sxw, &anim[animID].syw, &anim[animID].szw);
@@ -109,6 +110,9 @@ void SceneManager::loadObjects(char *l) {
 	fscanf(file, "#CAMERA\nNEAR %f\nFAR %f\nFOV %f\nSPEED %f", &Singleton<Camera>::GetInstance()->nearPlane, &Singleton<Camera>::GetInstance()->farPlane,
 		&Singleton<Camera>::GetInstance()->fov, &Singleton<Camera>::GetInstance()->speed);
 	fclose(file);
+	for (int i = 1; i < animNum; i++) {
+		anim[i].tzw = anim[0].tzw - (i * 0.01);
+	}
 
 }
 
