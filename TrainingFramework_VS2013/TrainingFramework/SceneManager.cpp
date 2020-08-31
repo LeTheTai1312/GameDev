@@ -118,11 +118,12 @@ void SceneManager::loadObjects(char *l) {
 
 void SceneManager::draw() {
 	Singleton<Camera>::GetInstance()->set_CamVP();
-	for (int i = 0; i < objectNum; i++) {
-		objects[i].draw();
-	}
+	objects[0].draw();
 	for (int i = animNum - 1; i >= 0; i--) {
 		anim[i].draw_anim();
+	}
+	for (int i = objectNum - 1; i >= 0; i--) {
+		objects[i].draw();
 	}
 }
 float time = 0;
@@ -169,8 +170,13 @@ bool SceneManager::checkCoRec(Rectangl rec, Circle cir)
 bool SceneManager::checkCoCirCir()
 {
 	for (int i = 0; i < animNum; i++) {
-		for (int j = 0; j < animNum && j != i; j++)
-			if (Singleton<Physic>::GetInstance()->checkCoCirCir(anim[i].cir, anim[j].cir))
+		for (int j = 0; j < animNum; j++)
+			if (Singleton<Physic>::GetInstance()->checkCoCirCir(anim[i].cir, anim[j].cir) && i != j)
+				if (anim[i].size > anim[j].size) {
+					anim[j].signal = 4;
+				}
+				else if (anim[j].size > anim[i].size) {
+				}
 				return true;
 	}
 	return false;

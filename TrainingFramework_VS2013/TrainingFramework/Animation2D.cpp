@@ -136,6 +136,9 @@ void Animation2D::update_animation_move_player(int x, int y)
 	float cc = v * (float)j / sqrt(j * j + k * k);
 	float d = v * (float)k / sqrt(j * j + k * k);
 
+	this->x_temp = cc;
+	this->y_temp = d;
+
 	a += cc;//vị trí sau khi di chuyển
 	b += d;
 
@@ -201,8 +204,8 @@ void Animation2D::update_animation_move_boss(float deltaTime)
 		c = 0;
 	}
 	turning();
-	bite();
 	zoom();
+	bite();
 	if (countFrame == 5 && c == 1) {
 		curent_texture = texture[1];
 		play();
@@ -243,14 +246,14 @@ void Animation2D::bite()
 	if (signal == 3 && c == 0 && bite_wait == 0) {
 		curent_texture = texture[4];
 		play();
-		countFrame = 0;
+		//countFrame = 0;
 		signal = 0;
 		bite_wait = 1;
 	}
 	else if (signal == 3 && c == 1 && bite_wait == 0) {
 		curent_texture = texture[5];
 		play();
-		countFrame = 0;
+		//countFrame = 0;
 		signal = 0;
 		bite_wait = 1;
 	}
@@ -288,9 +291,17 @@ void Animation2D::zoom() {
 		syw -= (sy / 2);
 		szw -= (sz / 2);
 	}
-	if (sxw < (sx / 2.5) && disapear_wait == 0) {
+	if (sxw < (sx / 2) && disapear_wait == 0) {
 		disapear();
 	}
+}
+
+void Animation2D::follow()
+{
+}
+
+void Animation2D::avoid()
+{
 }
 
 float pp = 0;//tinh time doi chuyen dong
