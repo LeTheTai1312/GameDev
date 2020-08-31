@@ -4,8 +4,8 @@
 #include <time.h>
 
 Animation2D::Animation2D(){
-	m_hx = (static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 100)));
-	m_hy = (static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 100)));
+	m_hx = (static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 100))) - 50.0;
+	m_hy = (static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 100))) - 50.0;
 }
 
 Animation2D::~Animation2D()
@@ -296,16 +296,14 @@ void Animation2D::zoom() {
 float pp = 0;//tinh time doi chuyen dong
 void Animation2D::SetVectorh(float a, float b, float deltatime)
 {
-	if (pp < 10)
+	if (pp < 5)
 	{
 		pp += deltatime;
 	}
 	else {
 		pp = 0;
-		srand(time(NULL));
-		m_hx = (float)rand();
-		srand(time(NULL));
-		m_hy = (float)rand();
+		m_hx = (float)(rand() % 50 - 25);
+		m_hy = (float)(rand() % 50 - 25);
 	}
 
 	int t;
@@ -336,13 +334,13 @@ void Animation2D::SetVectorh(float a, float b, float deltatime)
 	{
 	case 1:
 	{
-		m_hx = 0;
+		//m_hx = 0;
 		m_hy = 1;
 		break;
 	}
 	case 2:
 	{
-		m_hx = 0;
+		//m_hx = 0;
 		m_hy = -1;
 		break;
 	}
